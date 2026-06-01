@@ -1,0 +1,166 @@
+---
+import Headline from '~/components/ui/Headline.astro';
+import ItemGrid from '~/components/ui/ItemGrid.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Image from '~/components/common/Image.astro';
+import type { Features as Props } from '~/types';
+
+const {
+  title = await Astro.slots.render('title'),
+  subtitle = await Astro.slots.render('subtitle'),
+  tagline = await Astro.slots.render('tagline'),
+  image,
+  items = [],
+  columns,
+  defaultIcon,
+  isBeforeContent,
+  isAfterContent,
+
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props as Props;
+
+// ---------------- helpers ----------------
+const escapeHtml = (s = '') =>
+  s
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+const safeStr = (v: unknown) => (typeof v === 'string' ? v : '');
+
+// ---------------- IMPORTANT FIX ----------------
+// Build "text-only clickable" actions inside description.
+// Also REMOVE any `link` so ItemGrid does NOT wrap whole card in <a>.
+const mappedItems = (items as any[]).map((it) => {
+  const title = safeStr(it?.title);
+  const icon = it?.icon;
+  const itemClasses = it?.classes;
+
+  const originalDesc = safeStr(it?.description);
+  const cta = it?.callToAction;
+
+  // Ensure ItemGrid never gets `link`
+  // (even if caller mistakenly provides it)
+  const _ignoredLink = it?.link;
+
+  let descHtml = originalDesc ? escapeHtml(originalDesc) : '';
+
+  // If CTA exists, optionally make the "value text" clickable too
+  // (email address / phone number / ORCID id / address).
+  if (cta?.href && descHtml && !descHtml.includes('<')) {
+    // Only wrap when it makes sense (mailto/tel/http)
+    const href = String(cta.href);
+    const targetAttr = cta?.target ? ` target="${String(cta.target)}"` : '';
+    const relAttr = cta?.target === '_blank' ? ` rel="noopener noreferrer"` : '';
+
+    const canMakeValueClickable =
+      href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('http');
+
+    if (canMakeValueClickable) {
+      descHtml = `
+        <a href="${escapeHtml(href)}"${targetAttr}${relAttr}
+           class="font-medium text-gray-900 dark:text-white hover:underline underline-offset-4">
+          ${descHtml}
+        </a>
+      `;
+    }
+  }
+
+  // Add CTA link (text-only clickable)
+  if (cta?.href && cta?.text) {
+    const href = String(cta.href);
+    const targetAttr = cta?.target ? ` target="${String(cta.target)}"` : '';
+    const relAttr = cta?.target === '_blank' ? ` rel="noopener noreferrer"` : '';
+
+    descHtml += `
+      <div class="mt-4">
+        <a href="${escapeHtml(href)}"${targetAttr}${relAttr}
+           class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4">
+          ${escapeHtml(String(cta.text))} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    `;
+  }
+
+  return {
+    title,
+    icon,
+    description: descHtml,
+
+    // ✅ no link => ItemGrid uses <div> wrapper, not <a>
+    link: undefined,
+
+    // keep classes if caller uses them
+    classes: itemClasses,
+  };
+});
+---
+
+<WidgetWrapper
+  id={id}
+  isDark={isDark}
+  containerClass={`
+    ${isBeforeContent ? 'md:pb-8 lg:pb-12' : ''}
+    ${isAfterContent ? 'pt-0 md:pt-0 lg:pt-0' : ''}
+    ${classes?.container ?? ''}
+  `}
+  bg={bg}
+>
+  <Headline
+    title={title}
+    subtitle={subtitle}
+    tagline={tagline}
+    classes={classes?.headline as Record<string, string>}
+  />
+
+  {
+    image && (
+      <div class="mt-8 md:mt-10">
+        <div class="overflow-hidden rounded-2xl ring-1 ring-slate-200/70 dark:ring-slate-700/60 shadow-lg">
+          {typeof image === 'string' ? (
+            <Fragment set:html={image} />
+          ) : (
+            <Image
+              class="w-full h-72 md:h-80 object-cover"
+              width="auto"
+              height={320}
+              widths={[400, 768, 1024]}
+              layout="fullWidth"
+              {...image}
+            />
+          )}
+        </div>
+      </div>
+    )
+  }
+
+  <ItemGrid
+    items={mappedItems}
+    columns={columns}
+    defaultIcon={defaultIcon}
+    classes={{
+      container: 'mt-10 gap-y-8 md:gap-y-10',
+
+      // ✅ professional cards (NOT "clickable-card" vibe)
+      panel:
+        'w-full rounded-2xl border border-slate-200/70 bg-white p-6 shadow-sm ' +
+        'hover:shadow-md transition-shadow duration-200 ' +
+        'dark:border-slate-700/60 dark:bg-slate-900',
+
+      title: 'text-lg font-semibold tracking-tight text-gray-900 dark:text-white',
+      description: 'mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300',
+
+      // ✅ icon badge (clean, consistent)
+      icon:
+        'mb-3 w-12 h-12 p-3 rounded-2xl bg-slate-100 text-accent ring-1 ring-black/5 ' +
+        'dark:bg-slate-800 dark:ring-white/10',
+
+      ...((classes?.items as object) ?? {}),
+    }}
+  />
+</WidgetWrapper>

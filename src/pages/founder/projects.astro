@@ -1,0 +1,118 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+const metadata = {
+  title: 'Research Projects | SHAIL Lab',
+  description: 'Ongoing and emerging research initiatives at the Smart, Health, AI, and Leadership Lab (SHAIL Lab).',
+};
+
+const projects = [
+  {
+    title: 'AI-Driven Smart Healthcare Systems',
+    description:
+      'Development of intelligent decision-support systems that integrate artificial intelligence, clinical data, and digital health technologies to enhance medical diagnosis, healthcare management, and predictive analytics.',
+    icon: 'tabler:brain',
+  },
+
+  {
+    title: 'Wearable Technologies for Remote Health Monitoring',
+    description:
+      'Research on wearable sensing technologies and real-time monitoring platforms to support continuous patient observation, early risk detection, and personalized health management.',
+    icon: 'tabler:activity-heartbeat',
+  },
+
+  {
+    title: 'Digital Health Data Analytics and Predictive Modeling',
+    description:
+      'Application of machine learning and statistical modeling techniques to analyze large-scale healthcare datasets for disease prediction, clinical decision support, and population health insights.',
+    icon: 'tabler:chart-line',
+  },
+
+  {
+    title: 'AI Applications in Public Health and Preventive Medicine',
+    description:
+      'Exploration of artificial intelligence approaches for public health surveillance, early disease detection, and evidence-based policy development aimed at improving community health outcomes.',
+    icon: 'tabler:heart-handshake',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+
+  <!-- Hero Section -->
+  <Hero
+    compact
+    tagline="Research & Innovation"
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Contact for Collaboration',
+        href: getPermalink('/contact'),
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Research Projects at <span class="text-accent dark:text-white">SHAIL Lab</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <div class="mx-auto max-w-3xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        SHAIL Lab conducts interdisciplinary research at the intersection of
+        <strong>Artificial Intelligence, Digital Health, Smart Systems, and Leadership</strong>.
+        Our projects aim to translate advanced technologies into practical
+        healthcare solutions that improve clinical decision-making,
+        patient monitoring, and public health outcomes.
+      </div>
+    </Fragment>
+  </Hero>
+
+
+  <!-- Projects Section -->
+  <section class="bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-12 sm:pt-10 sm:pb-14">
+
+      <div class="mx-auto mb-8 h-px w-full max-w-5xl bg-gray-200/70 dark:bg-white/10"></div>
+
+      <Features3
+        title="Current Research Directions"
+        subtitle="Key research themes and innovation initiatives currently explored within SHAIL Lab."
+        columns={2}
+        classes={{
+          container: 'max-w-7xl mx-auto',
+          headline: {
+            container: 'text-center',
+            title: 'text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white',
+            subtitle: 'mt-3 max-w-4xl mx-auto text-gray-600 dark:text-gray-300',
+          },
+          items: {
+            container: 'mt-8 gap-6 sm:gap-8',
+          },
+        }}
+        items={projects}
+      />
+
+    </div>
+  </section>
+
+
+  <!-- Collaboration Section -->
+  <section class="bg-gray-50 dark:bg-gray-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 py-10 sm:py-12">
+
+      <CallToAction
+        title="Interested in Research Collaboration?"
+        subtitle="SHAIL Lab welcomes partnerships with universities, hospitals, research institutes, and industry organizations working in digital health, artificial intelligence, and smart technologies."
+        actions={[
+          { variant: 'primary', text: 'Contact Us', href: getPermalink('/contact') },
+          { variant: 'secondary', text: 'Meet the Team', href: getPermalink('/founder/team') },
+        ]}
+      />
+
+    </div>
+  </section>
+
+</Layout>

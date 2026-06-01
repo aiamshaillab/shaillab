@@ -1,0 +1,31 @@
+site:
+  name: 'SHAIL Lab'
+  site: 'https://shail-lab.org'
+  base: '/'
+  trailingSlash: false
+
+metadata:
+  title:
+    default: 'SHAIL Lab'
+    template: '%s | SHAIL Lab'
+  description: 'Smart Healthcare, Artificial Intelligence and Leadership Lab at National Taipei University.'
+  robots:
+    index: true
+    follow: true
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: null
+
+ui:
+  theme: 'system'

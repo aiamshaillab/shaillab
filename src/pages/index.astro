@@ -1,0 +1,456 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Hero2 from '~/components/widgets/Hero2.astro';
+import Features from '~/components/widgets/Features.astro';
+
+// ✅ OLD single image (you can keep if you want as fallback)
+// import hero from '~/assets/images/hero.png';
+
+// ✅ NEW: Rotating images (from src/assets/images2)
+// NOTE: change filenames ONLY here if you add/remove images
+import img1 from '~/assets/images2/1Gown_photos.jpg';
+import img2 from '~/assets/images2/1Graduation_ceremony.jpg';
+import img3 from '~/assets/images2/1Healthcare_Expo.jpg';
+import img4 from '~/assets/images2/1Promotion.jpg';
+import img5 from '~/assets/images2/1WELCOME_PARTY.jpg';
+
+import img7 from '~/assets/images2/2Gown_photos.jpg';
+import img8 from '~/assets/images2/10wistron_Visit.jpg';
+import img9 from '~/assets/images2/2Gown_photos.jpg';
+import img10 from '~/assets/images2/2Graduation_ceremony.jpg';
+import img11 from '~/assets/images2/2Promotion.jpg';
+import img12 from '~/assets/images2/2Graduation.jpg';
+import img13 from '~/assets/images2/2Students_Mentor.jpg';
+import img14 from '~/assets/images2/prof_award.jpg';
+import img15 from '~/assets/images2/7WistronVisit.jpg';
+
+import img16 from '~/assets/images2/3DVisit.jpg';
+import img17 from '~/assets/images2/3Gown_photos.jpg';
+import img18 from '~/assets/images2/4VisitITRI.jpg';
+import img19 from '~/assets/images2/3graduation.jpg';
+import img21 from '~/assets/images2/4StudentsMentor.jpg';
+import img22 from '~/assets/images2/Visit.jpg';
+import global from '~/assets/images/global.jpg';
+import leadership from '~/assets/images/leadership.jpg';
+
+const metadata = {
+  title: 'SHAIL LAB - The Smart, Health, AI, and Leadership Lab',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- ✅ Home Hero (Image slideshow)
+     rotateMs: how long each image stays (ms). 3000 = 3 seconds
+     fadeMs: fade animation duration (ms)
+     imageHeight: change only if you want taller/shorter hero image
+-->
+  <Hero
+    rotateMs={3000}
+    fadeMs={300}
+    imageHeight="clamp(260px, 30vw, 520px)"
+    images={[
+      { src: img1, alt: 'Gown photos together' },
+      { src: img2, alt: 'Graduation ceremony 2024' },
+      { src: img3, alt: 'Healthcare Expo' },
+      { src: img4, alt: 'Promotion video filming' },
+      { src: img5, alt: 'Welcome party' },
+      { src: img7, alt: 'Gown photos together' },
+      { src: img8, alt: 'Gown photos' },
+      { src: img9, alt: 'Graduation ceremony 2024' },
+      { src: img10, alt: 'Graduation May 2025' },
+      { src: img11, alt: 'Promotion video filming' },
+      { src: img12, alt: 'Students mentor meeting - Coffee' },
+      { src: img13, alt: 'Welcome party' },
+      { src: img14, alt: 'Wistron visit - Pinglin Tea Museum' },
+      { src: img15, alt: 'D-Visit' },
+      { src: img16, alt: 'Gown photos together' },
+      { src: img17, alt: 'Visit to ITRI' },
+      { src: img18, alt: 'Graduation May 2025' },
+      { src: img19, alt: 'Promotion video filming' },
+      { src: img21, alt: 'Welcome party' },
+      { src: img22, alt: 'Wistron visit - Pinglin Tea Museum' },
+    ]}
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Meet the Team',
+        href: '/founder/team',
+        icon: 'tabler:users',
+      },
+      {
+        text: 'Join the Lab',
+        href: getPermalink('/contact'),
+        icon: 'tabler:rocket',
+      },
+      {
+        text: 'Learn More',
+        href: getPermalink('/about'),
+        icon: 'tabler:arrow-right',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="block text-[clamp(1.2rem,4vw,2.6rem)] font-bold tracking-tight">
+        Smart Systems, Health Innovation, AI Leadership.
+      </span>
+
+      <span class="block text-[clamp(1.2rem,4vw,2.6rem)] font-bold tracking-tight">
+        transforms ideas into scalable solutions that drive global change.
+      </span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:block font-semibold text-[clamp(0.9rem,2vw,1.25rem)] text-gray-600 dark:text-gray-300">
+        A global hub for AI-driven research, smart health solutions, and leadership development.
+      </span>
+    </Fragment>
+  </Hero>
+  <!-- About Us Section -->
+  <section class="py-20">
+    <div class="mx-auto max-w-4xl px-6 text-center">
+      <!-- Title -->
+      <h2 class="text-3xl sm:text-4xl font-bold tracking-tight mb-10">About Us</h2>
+
+      <!-- Content -->
+      <div class="space-y-6 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        <p class="text-gray-700 dark:text-gray-300 text-center">
+          The Smart, Health, AI, and Leadership Lab (SHAIL Lab) is dedicated to advancing innovation at the intersection
+          of technology, health, and leadership. Founded on the principle that artificial intelligence and smart systems
+          can drive transformative change, SHAIL Lab serves as a collaborative hub where ideas are tested, knowledge is
+          shared, and solutions are built for real-world impact.
+        </p>
+
+        <!-- Vision Quote -->
+        <div class="flex justify-center">
+          <p class="max-w-2xl border-l-4 border-accent pl-5 italic text-center text-gray-600 dark:text-gray-300">
+            Our vision is to become a global leader in smart technologies, health innovation, and responsible AI
+            adoption. By empowering students, researchers, and professionals, we seek to bridge technical expertise with
+            leadership skills, equipping the next generation to shape the future of healthcare, finance, and industry.
+          </p>
+        </div>
+
+        <p class="text-gray-700 dark:text-gray-300 text-center">
+          At SHAIL Lab, we foster international partnerships, nurture entrepreneurship, and promote sustainability.
+          Through interdisciplinary research and practical applications, we transform AI and smart technologies into
+          scalable innovations that improve lives, strengthen communities, and prepare tomorrow’s global leaders.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- =========================
+     Founder Welcome (Top-aligned + Clean Typography)
+     ========================= -->
+  <section id="founder-welcome" class="bg-gray-50 dark:bg-gray-800 scroll-mt-24">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 pt-10 pb-14 sm:pt-12 sm:pb-16">
+      <!-- Subtle separator (consistent with other sections) -->
+      <div class="mx-auto mb-8 h-px w-full max-w-4xl bg-gray-200/70 dark:bg-white/10"></div>
+
+      <!-- Header -->
+      <div class="text-center">
+        <p class="text-sm font-semibold tracking-wide text-accent uppercase">Founder’s Welcome Message</p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Welcome to SHAIL Lab
+        </h2>
+
+        <p class="mt-3 mx-auto max-w-3xl text-sm sm:text-base leading-relaxed text-gray-600 dark:text-gray-300">
+          A short note on our vision—where responsible AI, healthcare innovation, and leadership development meet.
+        </p>
+      </div>
+
+      <!-- Text (NO card) -->
+      <div class="mt-10 mx-auto max-w-4xl text-center">
+        <div class="space-y-7 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          <p>
+            When I founded the Smart, Health, AI, and Leadership Lab, my vision was simple yet ambitious: to create a
+            collaborative space where innovation, healthcare, and leadership meet. With backgrounds in biomedical
+            engineering, clinical research, and data science, I have seen first-hand how artificial intelligence and
+            smart technologies can transform lives—when guided by responsibility, inclusivity, and strong leadership.
+          </p>
+
+          <p>
+            At SHAIL Lab, we bridge technical excellence with practical impact. Our research spans healthcare
+            management, medical devices, wearable technologies, and data-driven solutions designed to enhance patient
+            care and expand access to quality health services worldwide.
+          </p>
+
+          <p>
+            We also place strong emphasis on leadership development, preparing the next generation of innovators not
+            only to build solutions, but to guide them responsibly into practice.
+          </p>
+        </div>
+
+        <!-- Divider -->
+        <div class="flex justify-center pt-10">
+          <div class="h-px w-24 bg-gray-300/80 dark:bg-gray-600/70"></div>
+        </div>
+
+        <!-- Signature -->
+        <div class="pt-6">
+          <div class="font-semibold text-gray-900 dark:text-white">Dr. Manga</div>
+          <div class="text-sm text-gray-600 dark:text-gray-400">Founder &amp; Director, SHAIL Lab</div>
+
+          <!-- Optional small CTA (typography style, not a big button) -->
+          <div class="mt-4">
+            <a
+              href="/founder/info"
+              class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4"
+            >
+              Read Full Profile <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Reduce Features vertical padding by overriding container class -->
+  <Features
+    title="Our Key Pillars"
+    columns={4}
+    classes={{
+      container: 'max-w-7xl mx-auto py-8 md:py-10',
+      title: 'text-center',
+      items: 'gap-10',
+    }}
+    items={[
+      {
+        title: 'Smart Systems',
+        description:
+          'We harness intelligent technologies and data-driven solutions to optimize performance across healthcare, finance, and industry.',
+        icon: 'tabler:cpu',
+        // Removed iconClass as it is not defined in the Item type
+      },
+      {
+        title: 'Health Innovation',
+        description:
+          'Our work in AI-powered healthcare focuses on improving patient outcomes, advancing diagnostics, and promoting digital health equity.',
+        icon: 'tabler:heartbeat',
+      },
+      {
+        title: 'AI Leadership',
+        description:
+          'We prepare the next generation of leaders by combining technical excellence with ethical decision-making and strategic vision.',
+        icon: 'tabler:brain',
+      },
+      {
+        title: 'Global Collaboration',
+        description:
+          'Through partnerships with universities, governments, and industry leaders, we translate research into scalable impact worldwide.',
+        icon: 'tabler:world',
+      },
+    ]}
+  />
+
+  <!-- ✅ Hero2 compact to avoid big white space -->
+  <Hero2 compact image={{ src: global, alt: 'AstroWind Hero Image' }}>
+    <Fragment slot="title">
+      <span class="block text-center font-semibold tracking-tight text-[clamp(1.25rem,4vw,2.75rem)]">
+        Partnerships &amp; Global Reach
+      </span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <div class="mx-auto max-w-3xl text-center text-base sm:text-lg leading-relaxed space-y-6">
+        <span class="hidden sm:inline">
+          Collaboration fuels our work.
+          <span class="font-semibold"> SHAIL Lab</span> partners with universities, research centers, and industry innovators
+          to address global challenges. Our network spans Asia, Africa, and beyond, building bridges for academic exchange,
+          joint research, and policy impact.
+        </span>
+
+        <span class="block font-medium mt-6"> Our collaborations focus on: </span>
+
+        <ul class="mt-3 space-y-2 text-left mx-auto max-w-xl list-disc list-inside">
+          <li>Academic research and knowledge exchange.</li>
+          <li>Joint training and capacity-building programs.</li>
+          <li>Industry innovation and entrepreneurship support.</li>
+          <li>Policy development for sustainable AI adoption.</li>
+        </ul>
+      </div>
+    </Fragment>
+  </Hero2>
+
+  <Hero2 compact image={{ src: leadership, alt: 'AstroWind Hero Image' }}>
+    <Fragment slot="title">
+      <span class="block text-center font-semibold tracking-tight text-[clamp(1.25rem,4vw,2.75rem)]">
+        Education &amp; Leadership Development
+      </span>
+    </Fragment>
+    <Fragment slot="subtitle">
+      <div class="mx-auto max-w-3xl text-center text-base sm:text-lg leading-relaxed space-y-10">
+        <span class="hidden sm:inline">
+          Education is central to our mission.
+          <span class="font-semibold"> SHAIL Lab</span> offers workshops, leadership training, and mentorship opportunities
+          that bridge AI expertise with real-world problem solving. We empower students and professionals to become innovators
+          who can responsibly guide the future of healthcare, finance, and technology.
+        </span>
+
+        <span class="block font-medium mt-6"> Highlights include: </span>
+
+        <ul class="mt-3 space-y-2 text-left mx-auto max-w-xl list-disc list-inside">
+          <li>AI literacy and awareness programs.</li>
+          <li>Leadership and decision-making training.</li>
+          <li>Student research and innovation mentoring.</li>
+          <li>International academic exchange opportunities.</li>
+        </ul>
+      </div>
+    </Fragment>
+  </Hero2>
+  <!-- =========================
+     Contact Options (polished cards, links only clickable)
+     ========================= -->
+  <section class="bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-16">
+      <!-- Heading -->
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">Get in Touch</h2>
+        <p class="mt-3 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+          Reach out for collaborations, research partnerships, student opportunities, or academic engagement.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="mt-8 sm:mt-10 grid gap-6 sm:gap-8 md:grid-cols-3">
+        <!-- Card 1 -->
+        <div
+          class="group rounded-2xl border border-gray-200/70 bg-white p-7 shadow-sm transition-all duration-200
+               hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-slate-900"
+        >
+          <div class="mb-5">
+            <span
+              class="inline-flex h-12 w-12 items-center justify-center rounded-2xl
+                   bg-slate-100 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/10"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-accent" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 5h6M9 9h6M9 13h6M7 3h10a2 2 0 0 1 2 2v16l-3-2-3 2-3-2-3 2V5a2 2 0 0 1 2-2Z"></path>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Contact Form</h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            Submit an enquiry with your name, email, topic, and message.
+          </p>
+
+          <div class="mt-5">
+            <a
+              href="/founder/contact_form"
+              class="inline-flex items-center gap-2 text-sm font-semibold text-accent
+                   hover:underline underline-offset-4"
+            >
+              Open contact form <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div
+          class="group rounded-2xl border border-gray-200/70 bg-white p-7 shadow-sm transition-all duration-200
+               hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-slate-900"
+        >
+          <div class="mb-5">
+            <span
+              class="inline-flex h-12 w-12 items-center justify-center rounded-2xl
+                   bg-slate-100 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/10"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-accent" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8a3 3 0 1 0-3-3"></path>
+                <path d="M6 14a3 3 0 1 0 3 3"></path>
+                <path d="M18 16a3 3 0 1 0 3 3"></path>
+                <path d="M8.7 14.7 15.3 9.3"></path>
+                <path d="M8.7 17.3 15.3 18.7"></path>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Follow &amp; Connect</h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            Visit official channels for updates, publications, and announcements.
+          </p>
+
+          <!-- Only links clickable -->
+          <div class="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm">
+            <a
+              href="https://www.linkedin.com/in/dryankuba/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-accent hover:underline underline-offset-4"
+            >
+              LinkedIn
+            </a>
+            <span class="text-gray-400 dark:text-white/30">·</span>
+
+            <a
+              href="https://x.com/dryangadb?s=11&t=oMZQrccaJrxS18d0c5Yuyg"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-accent hover:underline underline-offset-4"
+            >
+              X (Twitter)
+            </a>
+            <span class="text-gray-400 dark:text-white/30">·</span>
+
+            <a
+              href="https://www.facebook.com/dryankuba?mibextid=wwXIfr&rdid=b5MjBPeM9GtHqbSv&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1DdYedaZip%2F%3Fmibextid%3DwwXIfr#"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-accent hover:underline underline-offset-4"
+            >
+              Facebook
+            </a>
+            <span class="text-gray-400 dark:text-white/30">·</span>
+
+            <a
+              href="https://www.youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="font-semibold text-accent hover:underline underline-offset-4"
+            >
+              YouTube
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="group rounded-2xl border border-gray-200/70 bg-white p-7 shadow-sm transition-all duration-200
+               hover:-translate-y-0.5 hover:shadow-md dark:border-white/10 dark:bg-slate-900"
+        >
+          <div class="mb-5">
+            <span
+              class="inline-flex h-12 w-12 items-center justify-center rounded-2xl
+                   bg-slate-100 ring-1 ring-black/5 dark:bg-slate-800 dark:ring-white/10"
+            >
+              <svg viewBox="0 0 24 24" class="h-6 w-6 text-accent" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 6h16v12H4z"></path>
+                <path d="m4 7 8 6 8-6"></path>
+              </svg>
+            </span>
+          </div>
+
+          <h3 class="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Newsletter Updates</h3>
+
+          <p class="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+            Subscribe to receive lab news, events, and publication highlights.
+          </p>
+
+          <div class="mt-5">
+            <a
+              href="/founder/newsletter"
+              class="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4"
+            >
+              Subscribe <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

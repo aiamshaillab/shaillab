@@ -1,0 +1,108 @@
+---
+import '@fontsource-variable/inter';
+
+// 'DM Sans'
+// Nunito
+// Dosis
+// Outfit
+// Roboto
+// Literata
+// 'IBM Plex Sans'
+// Karla
+// Poppins
+// 'Fira Sans'
+// 'Libre Franklin'
+// Inconsolata
+// Raleway
+// Oswald
+// 'Space Grotesk'
+// Urbanist
+---
+
+<style is:inline>
+  :root {
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    --aw-color-primary: rgb(1 97 239);
+    --aw-color-secondary: rgb(1 84 207);
+    --aw-color-accent: rgb(109 40 217);
+
+    --aw-color-text-heading: rgb(0 0 0);
+    --aw-color-text-default: rgb(16 16 16);
+    --aw-color-text-muted: rgb(16 16 16 / 66%);
+    --aw-color-bg-page: rgb(255 255 255);
+
+    --aw-color-bg-page-dark: rgb(3 6 32);
+
+    ::selection {
+      background-color: lavender;
+    }
+  }
+
+  .dark {
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    --aw-color-primary: rgb(1 97 239);
+    --aw-color-secondary: rgb(1 84 207);
+    --aw-color-accent: rgb(109 40 217);
+
+    --aw-color-text-heading: rgb(247, 248, 248);
+    --aw-color-text-default: rgb(229 236 246);
+    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-bg-page: rgb(3 6 32);
+
+    ::selection {
+      background-color: black;
+      color: snow;
+    }
+  }
+ .profile-image {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 10%;
+}
+/* ===== Founder Hero Profile Image ===== */
+.hero-profile-image {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  object-position: center top; /* shows full head */
+  border-radius: 50%;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.15);
+  background: #f5f5f5;
+}
+.features svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--aw-color-accent);
+  margin-bottom: 0.75rem;
+}
+/* Hero CTA button styling (same as “Read Full Profile”) */
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: rgb(109 40 217); /* primary */
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(109, 40, 217, 0.25);
+  transition: opacity 160ms ease;
+}
+.hero-cta:hover {
+  opacity: 0.92;
+}
+.hero-cta:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.18);
+}
+
+</style>

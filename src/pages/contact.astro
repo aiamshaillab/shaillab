@@ -1,0 +1,146 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Contact SHAIL Lab',
+  description:
+    'Contact SHAIL Lab for research collaboration, academic programs, technical support, media enquiries, and innovation initiatives.',
+};
+
+// ✅ Replace with your real banner image path
+// ✅ Banner image served from /public
+const bannerImg = '/global.png';
+
+// ✅ Breadcrumb like your screenshot
+const breadcrumb = [
+  { text: 'Home', href: '/' },
+  { text: 'Contact Us' },
+];
+
+// ✅ Replace ICSI/OIA/Admission with THESE FOUR sections
+const contacts = [
+  {
+    tag: 'Office Hours & Response',
+    title: 'Office Hours & Response',
+    lines: [
+      { label: 'Hours', value: 'Mon–Fri, 09:00–17:00 (UTC+8, Asia/Taipei)' },
+      { label: 'Typical response', value: '2–3 business days' },
+      { label: 'Note', value: 'Response times may extend during university closures or examination periods.' },
+      { label: 'Important', value: 'Informational & academic use only. No clinical or legal advice.' },
+    ],
+  },
+  {
+    tag: 'Collaboration & Partnerships',
+    title: 'Collaboration & Partnerships',
+    lines: [
+      { label: 'Scope', value: 'Academic & industry collaborations in AI-enabled smart health and leadership.' },
+      { label: 'Email', value: 'aiamshaillab@gmail.com', href: 'mailto:aiamshaillab@gmail.com?subject=Collaboration%20Proposal%20%E2%80%93%20SHAIL%20Lab' },
+      { label: 'Include', value: 'Summary (≤ 200 words), objectives, timeline, stakeholders, funding context (if any).' },
+    ],
+  },
+  {
+    tag: 'Technical & Research Support',
+    title: 'Technical & Research Support',
+    lines: [
+      { label: 'Help with', value: 'Datasets, repositories, tools, and platforms.' },
+      { label: 'Email', value: 'aiamshaillab@gmail.com', href: 'mailto:aiamshaillab@gmail.com?subject=Technical%20Support%20%E2%80%93%20SHAIL%20Lab' },
+      { label: 'Include', value: 'URL/asset name, error message or screenshot, browser/OS, steps to reproduce.' },
+    ],
+  },
+  {
+    tag: 'Visiting Us',
+    title: 'Visiting Us',
+    lines: [
+      { label: 'Location', value: 'SHAIL Lab — International College of Sustainability Innovations (ICSI), National Taipei University (NTPU), Taiwan.' },
+      { label: 'Address', value: 'No. 151, Daxue Rd., Sanxia Dist., New Taipei City 23741, Taiwan (R.O.C.)' },
+      { label: 'Visitor notes', value: 'Appointments required. Government-issued ID may be required for campus access.' },
+      { label: 'Map', value: 'View Map', href: 'https://www.google.com/maps?q=National+Taipei+University+Sanxia' },
+    ],
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero banner like your screenshot -->
+  <section class="relative">
+    <div class="relative h-[220px] sm:h-[280px] md:h-[320px] overflow-hidden">
+      <img
+        src={bannerImg}
+        alt="Contact Us"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-slate-900/35"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-semibold tracking-[0.18em]">
+          Contact Us
+        </h1>
+      </div>
+    </div>
+
+    <!-- Breadcrumb -->
+    <div class="bg-white dark:bg-slate-950 border-b border-gray-200 dark:border-slate-800">
+      <div class="mx-auto max-w-6xl px-4 py-3 text-sm">
+        <nav aria-label="Breadcrumb" class="text-gray-600 dark:text-gray-300">
+          {breadcrumb.map((b, i) => (
+            <>
+              {i !== 0 && <span class="mx-2 text-gray-400">›</span>}
+              {b.href ? (
+                <a href={b.href} class="text-[#2f3e97] hover:underline">{b.text}</a>
+              ) : (
+                <span class="font-medium">{b.text}</span>
+              )}
+            </>
+          ))}
+        </nav>
+      </div>
+    </div>
+  </section>
+<!-- Contact sections (NO form) -->
+<section class="mx-auto max-w-6xl px-4 py-10 sm:py-14">
+  <!-- ONLY this part is centered -->
+  <div class="text-center">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-[#2f3e97]">
+      Contact SHAIL Lab
+    </h2>
+
+    <p class="mx-auto max-w-3xl text-base sm:text-lg text-slate-700 dark:text-slate-300">
+      We welcome enquiries about research collaboration, academic programs, events, and innovation initiatives.
+      Please choose the most relevant route below to help us respond efficiently.
+    </p>
+  </div>
+
+  <!-- Everything below stays normal (NOT centered) -->
+  <div class="mt-12 text-left">
+    <!-- Put your 4 sections/cards/grid here -->
+    <!-- Example: contacts.map(...) OR your card components -->
+    {contacts.map((c) => (
+      <article class="max-w-3xl mb-10">
+        <span class="inline-block bg-[#2f3e97] text-white text-xs font-bold px-2 py-1 rounded-sm">
+          {c.tag}
+        </span>
+
+        <h3 class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">
+          {c.title}
+        </h3>
+
+        <div class="mt-3 space-y-2 text-slate-800 dark:text-slate-200">
+          {c.lines.map((l) => (
+            <p class="leading-relaxed">
+              <span class="font-medium">{l.label}:</span>{' '}
+              {l.href ? (
+                <a href={l.href} class="text-[#2f3e97] hover:underline">
+                  {l.value}
+                </a>
+              ) : (
+                <span>{l.value}</span>
+              )}
+            </p>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+</Layout>

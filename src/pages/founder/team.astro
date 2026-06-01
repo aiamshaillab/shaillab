@@ -1,0 +1,228 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Teamset from '~/components/widgets/Teamset.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+
+import avatar0 from '~/assets/images/avatar.jpg';
+import neama from '~/assets/images/Neama Ali.jpg';
+import maytacha from '~/assets/images/Maytacha.jpg';
+import joy from '~/assets/images/Joy.jpg';
+import hanh from '~/assets/images/DTMH.png';
+import luk from '~/assets/images/Lukman.jpg';
+import khalid from '~/assets/images/khalid.jpeg';
+import bashir from '~/assets/images/bashir.jpeg';
+import 範玉清偉 from '~/assets/images/AvtGrl.png';
+import MohammadShadmanShafat from '~/assets/images/AvtBoy.png';
+import 譚惠琳 from '~/assets/images/AvtGrl2.png';
+import LouiseKhateValienteContreras from '~/assets/images/AvtBoy2.png';
+import 李彬 from '~/assets/images/AvtBoy3.png';
+import YanisaChuenopparat from '~/assets/images/YanisaChuenopparat.jpg';
+import PhamNgocThanhVy from '~/assets/images/PhamNgocThanhVy.jpg';
+const metadata = {
+  title: 'Our Lab Members',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- =========================
+     Founder & Director (Centered + Avatar under name)
+     ========================= -->
+  <section class="bg-white dark:bg-slate-950">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 pt-10 pb-12 sm:pt-12 sm:pb-14">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="text-sm font-semibold tracking-wide text-accent uppercase">Founder &amp; Director</p>
+
+        <h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Dr. <span class="text-accent dark:text-white">Yankuba B. Manga</span>
+        </h1>
+
+        {/* ✅ Profile image directly under the name (like your circle example) */}
+        <img
+          src={avatar0.src}
+          alt="Dr. Yankuba B. Manga – Founder & Director, SHAIL Lab"
+          loading="eager"
+          class="mx-auto mt-6 h-44 w-44 sm:h-52 sm:w-52 rounded-full object-cover object-top
+               shadow-lg ring-4 ring-white/90 dark:ring-slate-900/80"
+        />
+
+        {/* Text (same text, just cleaner spacing) */}
+        <p class="mt-6 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          Dr. Manga is the Founder &amp; Director of <span class="font-semibold">SHAIL Lab</span> and an Assistant Professor
+          at National Taipei University.
+        </p>
+
+        <p class="mt-4 mx-auto max-w-2xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          His research spans artificial intelligence, healthcare management, wearable technologies, and data-driven
+          innovation, with a mission to transform smart systems into responsible, scalable solutions for global health.
+        </p>
+
+        {/* Button */}
+        <div class="mt-7 flex justify-center">
+          <a
+            href={getPermalink('/founder/info')}
+            class="inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold
+                 bg-primary text-white shadow-sm transition hover:opacity-90 focus:outline-none
+                 focus:ring-2 focus:ring-primary/40"
+          >
+            Read Full Profile
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- =========================
+     LAB MEMBERS
+     ========================= -->
+
+  <section class="py-14 md:py-16">
+    <!-- Section Title -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">Our Lab Members</h2>
+      <p class="mt-2 text-sm font-semibold text-blue-600 tracking-widest uppercase">Current Members</p>
+    </div>
+
+    <!-- Team Members -->
+    <Teamset
+      prices={[
+        {
+          title: '李彬',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: 李彬,
+          contact: 'abimanyuizrico@gmail.com',
+          date: 'ADVISOR: July 2025 - Present',
+        },
+        {
+          title: 'Khalid Hassan Elmi 艾卡利',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: khalid,
+          content:
+            'Explainable Multimodal Artificial Intelligence for Personalized Alzheimer’s Disease Trajectory Stratification',
+          contact: 'cilmi510@gmail.com',
+          date: 'ADVISOR: July 2025 - Present',
+        },
+        {
+          title: 'Joy Dorothy Ang 蘇龍兒',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: joy,
+          content:
+            'Psychometric Equivalence and Trust-Calibrated Explainable AI in Chatbot-Based Mental Health Screening Among University Students',
+          contact: 'joydorothyang@gmail.com',
+          date: 'ADVISOR: May 2025 - Present',
+        },
+        {
+          title: 'Maytacha Theanrangsri',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: maytacha,
+          content:
+            'Clinical Decision Support Systems, Digital Health and Patient Adherence, Wearable Technology, Telehealth and Remote Patient Monitoring',
+          contact: 'theanrangsri.m@gmail.com',
+          date: 'ADVISOR: May 2025 - Present',
+        },
+        {
+          title: 'Ismail Neama Ali Farah',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: neama,
+          content:
+            'Clinical Care and Health Service Delivery, Smart Healthcare Systems, Nursing Informatics and Digital Transformation in Hospital',
+          contact: 'ayaan.ali.farah44@gmail.com',
+          date: 'ADVISOR: July 2025 - Present',
+        },
+        {
+          title: 'Osman Bashir Mohamed',
+          subtitle: 'MSc. Smart Healthcare Management',
+          image: bashir,
+          content: 'Clinical Data Integration and Machine Learning',
+          contact: 'bashirbashirmohamedosman@gmail.com',
+          date: 'ADVISOR: July 2025 - Present',
+        },
+      ]}
+    />
+  </section>
+  <!-- =========================
+     ALUMNI LINK
+     ========================= -->
+  <section class="py-10 md:py-12 bg-gray-50 dark:bg-gray-800">
+    <div class="mx-auto max-w-3xl px-4 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+        SHAIL Lab Alumni
+      </h2>
+      <p class="mt-3 text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        Meet our graduated members and their current positions.
+      </p>
+      <div class="mt-6">
+        <a
+          href={getPermalink('/founder/alumni')}
+          class="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold
+                 text-white shadow-sm transition hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary/40"
+        >
+          View Alumni →
+        </a>
+      </div>
+    </div>
+  </section>
+  <Teamset
+    title="Current Mentors of SHAIL Lab"
+    prices={[
+      {
+        title: 'Lukman Aweda',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: luk,
+        content: 'Focus on AI Applications in Maternal and Breast Cancer Care',
+        contact: 'lukmanaweda1992@gmail.com',
+        date: 'Mentor: Oct 2025 – Present',
+      },
+      {
+        title: 'Yanisa Chuenopparat',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: YanisaChuenopparat,
+        contact: 's711491117@ms.ntpu.edu.tw',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: 'Dinh Thi My Hanh',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: hanh,
+        content:
+          'Health Technology Assessment (HTA), Telemedicine, Digital Health for Elderly Care, Artificial Intelligence and Big Data in Healthcare Management',
+        contact: 'dinh.myhanh09@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: 'Pham Ngoc Thanh Vy',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: PhamNgocThanhVy,
+        contact: 'vypnt2311@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: 'Mohammad Shadman Shafat',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: MohammadShadmanShafat,
+        contact: 'shadman.shaft@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: 'Louise Khate Valiente Contreras',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: LouiseKhateValienteContreras,
+        contact: 'louise.khate@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: '譚惠琳',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: 譚惠琳,
+        contact: 'pead111777@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+      {
+        title: '範玉清偉',
+        subtitle: 'MSc. Smart Healthcare Management',
+        image: 範玉清偉,
+        contact: 'vypnt2311@gmail.com',
+        date: 'Mentor: Sep 2025 – Present',
+      },
+    ]}
+  />
+</Layout>

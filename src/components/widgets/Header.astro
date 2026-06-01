@@ -1,0 +1,135 @@
+---
+import { Icon } from 'astro-icon/components';
+import Logo from '~/components/Logo.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import ToggleMenu from '~/components/common/ToggleMenu.astro';
+import Button from '~/components/ui/Button.astro';
+
+import { getHomePermalink } from '~/utils/permalinks';
+import type { CallToAction } from '~/types';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+interface MenuLink extends Link {
+  links?: Array<MenuLink>;
+}
+
+export interface Props {
+  id?: string;
+  links?: Array<MenuLink>;
+  actions?: Array<CallToAction>;
+  isSticky?: boolean;
+  showToggleTheme?: boolean;
+}
+
+const { id = 'header', links = [], actions = [], isSticky = true, showToggleTheme = true } = Astro.props;
+
+const noWrapText = (t?: string) => (t ? t.replace(/\s&\s/g, '\u00A0&\u00A0') : '');
+---
+
+<header
+  id={id}
+  class:list={['z-50 w-full bg-[#2f3e97] border-b border-white/10', { 'fixed top-0 left-0 right-0': isSticky }]}
+>
+  <div class="mx-auto max-w-7xl px-5 md:px-8 py-3 flex items-center gap-4">
+    <!-- Logo -->
+    <a href={getHomePermalink()} class="flex items-center gap-2 shrink-0">
+      <Logo />
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex flex-1 justify-center" aria-label="Main navigation">
+      <ul class="flex items-center gap-1 text-[0.95rem] font-medium tracking-wide">
+        {
+          links.map((item) => (
+            <li class="relative">
+              {item.links?.length ? (
+                <!-- ✅ Hover dropdown (NO <details>) -->
+                <div class="relative group">
+                  <!-- Trigger -->
+                  <button
+                    type="button"
+                    class="px-4 py-2 rounded-md select-none whitespace-nowrap leading-none
+                           text-white/85 hover:text-white hover:bg-white/10 transition-colors duration-200
+                           inline-flex items-center gap-1
+                           focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                    aria-haspopup="menu"
+                  >
+                    {noWrapText(item.text)}
+                    <Icon
+                      name="tabler:chevron-down"
+                      class="w-4 h-4 opacity-90 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                    />
+                  </button>
+
+                  <!-- Dropdown -->
+                  <div
+                    class="absolute left-0 top-full pt-2 z-50
+                           opacity-0 invisible translate-y-1
+                           group-hover:opacity-100 group-hover:visible group-hover:translate-y-0
+                           group-focus-within:opacity-100 group-focus-within:visible group-focus-within:translate-y-0
+                           transition-all duration-200"
+                    role="menu"
+                  >
+                    <ul
+                      class="min-w-[220px] rounded-xl bg-white/95 dark:bg-slate-900/95 backdrop-blur
+                             shadow-xl ring-1 ring-black/5 dark:ring-white/10 p-2"
+                    >
+                      {item.links.map((child) => (
+                        <li role="none">
+                          <a
+                            href={child.href}
+                            role="menuitem"
+                            class="block px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200
+                                   text-slate-800 dark:text-slate-100
+                                   hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-[#2f3e97]
+                                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f3e97]/30"
+                          >
+                            {noWrapText(child.text)}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  href={item.href}
+                  class="px-4 py-2 rounded-md cursor-pointer select-none whitespace-nowrap leading-none
+                         text-white/85 hover:text-white hover:bg-white/10 transition-colors duration-200
+                         focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+                >
+                  {noWrapText(item.text)}
+                </a>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <!-- Right side -->
+    <div class="hidden md:flex items-center justify-end gap-2 shrink-0">
+      {showToggleTheme && <ToggleTheme iconClass="w-5 h-5 text-white/85 hover:text-white transition-colors" />}
+      {
+        actions?.length
+          ? actions.map((btnProps) => (
+              <Button
+                {...btnProps}
+                class="ml-2 px-5 py-2 text-sm font-semibold rounded-md bg-white text-[#2f3e97] hover:bg-white/90 transition-colors"
+              />
+            ))
+          : null
+      }
+    </div>
+
+    <!-- Mobile -->
+    <div class="md:hidden ml-auto">
+      <ToggleMenu />
+    </div>
+  </div>
+</header>

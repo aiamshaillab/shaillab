@@ -1,0 +1,116 @@
+---
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+import type { Item } from '~/types';
+
+export interface Props {
+  items?: Array<Item>;
+  defaultIcon?: string;
+  classes?: Record<string, string>;
+}
+
+const { items = [], classes = {}, defaultIcon } = Astro.props as Props;
+
+const {
+  container: containerClass = '',
+
+  // Applies to the whole row wrapper
+  panel: panelClass = '',
+
+  // Applies to title and description inside the card
+  title: titleClass = '',
+  description: descriptionClass = '',
+
+  // Icon style (circle)
+  icon: defaultIconClass = 'text-primary dark:text-slate-200 border-primary dark:border-blue-700',
+
+  // New optional hooks (safe even if unused)
+  card: cardClass = '',
+  line: lineClass = '',
+} = classes;
+---
+
+{
+  items && items.length > 0 && (
+    <div
+      class={twMerge(
+        'space-y-6',
+        containerClass
+      )}
+    >
+      {items.map(({ title, description, icon, classes: itemClasses = {} }, index) => {
+        const isLast = index === items.length - 1;
+
+        return (
+          <div
+            class={twMerge(
+              // ✅ entire timeline row
+              'relative flex gap-4',
+              panelClass,
+              itemClasses?.panel
+            )}
+          >
+            {/* Left timeline column: icon + vertical line */}
+            <div class="relative flex flex-col items-center">
+              {/* Icon */}
+              {(icon || defaultIcon) && (
+                <div class="z-10">
+                  <Icon
+                    name={icon || defaultIcon}
+                    class={twMerge(
+                      'w-10 h-10 p-2 rounded-full border-2 bg-white dark:bg-slate-900',
+                      defaultIconClass,
+                      itemClasses?.icon
+                    )}
+                  />
+                </div>
+              )}
+
+              {/* Vertical line (only if not last) */}
+              {!isLast && (
+                <div
+                  class={twMerge(
+                    'mt-2 w-px flex-1 bg-black/10 dark:bg-white/15',
+                    lineClass
+                  )}
+                />
+              )}
+            </div>
+
+            {/* Right content card */}
+            <div
+              class={twMerge(
+                'w-full rounded-2xl border border-gray-200/70 bg-white p-6 shadow-sm transition-shadow duration-200',
+                'hover:shadow-md dark:border-white/10 dark:bg-slate-900',
+                cardClass,
+                itemClasses?.card
+              )}
+            >
+              {title && (
+                <div
+                  class={twMerge(
+                    'text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-snug',
+                    titleClass,
+                    itemClasses?.title
+                  )}
+                  set:html={title}
+                />
+              )}
+
+              {description && (
+                <div
+                  class={twMerge(
+                    'mt-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300',
+                    descriptionClass,
+                    itemClasses?.description
+                  )}
+                  set:html={description}
+                />
+              )}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  )
+}

@@ -1,0 +1,180 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Terms of Use | SHAIL Lab',
+  description:
+    'Terms of Use for SHAIL Lab (Smart, Health, AI, and Leadership Lab), affiliated with ICSI, National Taipei University (NTPU).',
+};
+
+const effectiveDate = '2025-12-27'; // YYYY-MM-DD
+const contactEmail = 'aiamshaillab@gmail.com';
+
+const terms = [
+  {
+    title: 'Acceptance of Terms',
+    body: `
+      <p>
+        By accessing or using the SHAIL Lab website, you acknowledge that you have read, understood, and agree to be
+        bound by these Terms of Use and all applicable laws and regulations.
+      </p>
+    `,
+  },
+  {
+    title: 'Purpose of the Website',
+    body: `
+      <p>
+        This website is intended to provide information about SHAIL Lab’s research, educational programs, events, and
+        collaborations.
+      </p>
+      <p class="mt-3">
+        The content is for informational and academic purposes only and does not constitute professional, medical, or
+        legal advice.
+      </p>
+    `,
+  },
+  {
+    title: 'Intellectual Property Rights',
+    body: `
+      <p>
+        All content on this website—including text, graphics, logos, icons, and images—is the property of SHAIL Lab or
+        its affiliates unless otherwise stated.
+      </p>
+      <p class="mt-3">
+        You may view and print content for personal, non-commercial academic use only. Reproduction, distribution, public
+        display, or modification of any content without prior written permission is strictly prohibited.
+      </p>
+    `,
+  },
+  {
+    title: 'User Conduct',
+    body: `
+      <p>
+        You agree not to use the website for any unlawful, harmful, or abusive activity. This includes (but is not
+        limited to) attempts to gain unauthorized access, introducing malware, interfering with website operations, or
+        engaging in activities that could damage SHAIL Lab’s reputation or network security.
+      </p>
+    `,
+  },
+  {
+    title: 'External Links',
+    body: `
+      <p>
+        This website may contain links to external websites for your convenience. SHAIL Lab does not control and is not
+        responsible for the content, accuracy, availability, or privacy practices of third-party websites.
+      </p>
+      <p class="mt-3">
+        Links do not imply endorsement.
+      </p>
+    `,
+  },
+  {
+    title: 'Disclaimers',
+    body: `
+      <ul class="list-disc pl-5 space-y-2">
+        <li>The website is provided on an “as is” and “as available” basis.</li>
+        <li>SHAIL Lab does not warrant that the website will be error-free, uninterrupted, secure, or free from viruses.</li>
+        <li>SHAIL Lab shall not be liable for any damages arising out of your use or inability to use the website.</li>
+      </ul>
+    `,
+  },
+  {
+    title: 'Modifications',
+    body: `
+      <p>
+        SHAIL Lab reserves the right to modify or update these Terms of Use at any time without prior notice. Continued
+        use of the website after changes are posted constitutes your acceptance of the updated terms.
+      </p>
+    `,
+  },
+  {
+    title: 'Governing Law',
+    body: `
+      <p>
+        These Terms shall be governed by and construed in accordance with the laws of Taiwan. Any disputes shall be
+        resolved in the competent courts of Taiwan.
+      </p>
+    `,
+  },
+  {
+    title: 'Contact',
+    body: `
+      <p>
+        If you have questions about these Terms of Use, please contact:
+        <a class="font-semibold text-accent underline underline-offset-4" href="mailto:${contactEmail}">${contactEmail}</a>.
+      </p>
+    `,
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <section class="mx-auto max-w-4xl px-4 py-14 sm:py-16">
+    <!-- Header -->
+    <header class="text-center">
+      <p class="text-sm font-semibold tracking-wide text-accent">Legal</p>
+
+      <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+        Terms of Use
+      </h1>
+
+      <p class="mt-3 text-sm text-gray-700 dark:text-gray-300">
+        <span class="font-semibold">Effective Date:</span>
+        <time datetime={effectiveDate} class="ml-1">{effectiveDate}</time>
+      </p>
+
+      <p class="mt-6 text-base leading-relaxed text-gray-800 dark:text-gray-200">
+        Welcome to the website of <strong>SHAIL Lab</strong> (Smart, Health, AI, and Leadership Lab), operated in
+        affiliation with the <strong>International College of Sustainability Innovations (ICSI)</strong>,
+        <strong>National Taipei University (NTPU)</strong>. By accessing or using this website, you agree to comply with
+        and be bound by these Terms of Use. Please read them carefully before using the site.
+      </p>
+    </header>
+
+    <!-- Divider -->
+    <div class="mt-10 border-t border-gray-200 dark:border-gray-800"></div>
+
+    <!-- Accordion -->
+    <div class="mt-6">
+      {terms.map((t, idx) => (
+        <details class="legal-item border-b border-gray-200 dark:border-gray-800 py-5">
+          <summary class="flex items-start gap-4 cursor-pointer list-none select-none">
+            <span class="mt-0.5 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-900 dark:bg-slate-800 dark:text-white">
+              <span class="icon-plus text-lg leading-none">+</span>
+              <span class="icon-minus text-lg leading-none">−</span>
+            </span>
+
+            <div class="flex-1">
+              <h2 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                {idx + 1}. {t.title}
+              </h2>
+
+              <div class="answer mt-3 text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300">
+                <Fragment set:html={t.body} />
+              </div>
+            </div>
+          </summary>
+        </details>
+      ))}
+    </div>
+
+    <!-- Small disclaimer footer -->
+    <p class="mt-8 text-center text-xs text-gray-500 dark:text-gray-400">
+      This website is for informational and academic purposes only. It does not provide medical or legal advice.
+    </p>
+  </section>
+</Layout>
+
+<style>
+  /* Hide default marker */
+  summary::-webkit-details-marker { display: none; }
+
+  /* Answer hidden until open */
+  .legal-item .answer { display: none; }
+  .legal-item[open] .answer { display: block; }
+
+  /* Plus/minus swap */
+  .icon-minus { display: none; }
+  .legal-item[open] .icon-plus { display: none; }
+  .legal-item[open] .icon-minus { display: inline; }
+</style>

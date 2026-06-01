@@ -1,0 +1,126 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Collaboration | SHAIL Lab',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="max-w-5xl mx-auto px-6 py-20">
+    <!-- Title -->
+    <h1 class="text-4xl font-bold text-center mb-6">Collaborations</h1>
+
+    <p class="text-center text-gray-600 dark:text-gray-300 mb-14 max-w-3xl mx-auto">
+      SHAIL Lab welcomes interdisciplinary collaboration across academia, healthcare institutions, industry, and public
+      sectors. We aim to co-develop responsible AI, smart health systems, and data-driven solutions with measurable
+      impact.
+    </p>
+
+    <!-- Collaboration Areas -->
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="rounded-2xl border p-6">
+        <h2 class="text-xl font-semibold mb-2 text-center">Research Partnerships</h2>
+        <p class="text-gray-600 dark:text-gray-300 text-center">
+          Joint research projects, grant proposals, data-driven healthcare studies, and co-authored publications in AI,
+          digital health, medical informatics, and smart healthcare management.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border p-6 ">
+        <h2 class="text-xl font-semibold mb-2 text-center">Clinical Collaboration</h2>
+        <p class="text-gray-600 dark:text-gray-300 text-center">
+          Translational research with hospitals and clinical teams, including model validation, workflow integration,
+          and evaluation for real-world deployment.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border p-6">
+        <h2 class="text-xl font-semibold mb-2 text-center">Industry & Innovation</h2>
+        <p class="text-gray-600 dark:text-gray-300 text-center">
+          Prototype development, AI-enabled product validation, feasibility studies, and technology transfer in wearable
+          systems, healthcare analytics, and decision support tools.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border p-6">
+        <h2 class="text-xl font-semibold mb-2 text-center">Student & Academic Exchange</h2>
+        <p class="text-gray-600 dark:text-gray-300 text-center">
+          Supervision, internships, visiting students, co-teaching initiatives, and mentoring programs aligned with
+          SHAIL Lab’s research themes.
+        </p>
+      </div>
+    </div>
+
+    <!-- How to Collaborate -->
+    <div class="mt-14 rounded-2xl border p-8">
+      <h2 class="text-2xl font-bold mb-4 text-center">How to Collaborate</h2>
+
+      <ol class="list-decimal ml-6 space-y-2 text-justify text-gray-700 dark:text-gray-300">
+        <li class="text-gray-700 dark:text-gray-300 text-center">
+          <strong>Send a short proposal</strong> (1–2 paragraphs) describing your topic, objectives, and expected
+          outcomes.
+        </li>
+        <li class="text-gray-700 dark:text-gray-300 text-center">
+          <strong>Share available resources</strong> (datasets, devices, clinical access, tools, or funding plans).
+        </li>
+        <li class="text-gray-700 dark:text-gray-300 text-center">
+          <strong>Schedule a discussion</strong> to align on scope, responsibilities, and timeline.
+        </li>
+      </ol>
+
+      <div class="mt-6">
+        <p class="text-gray-700 text-center dark:text-gray-300">
+          Email us at:
+          <a class="font-semibold underline" href="mailto:aiamshaillab@gmail.com">aiamshaillab@gmail.com</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- Collaboration Highlights -->
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold mb-6 text-center">Collaboration Highlights</h2>
+
+      <div class="space-y-6">
+        <div class="rounded-2xl border p-6">
+          <h3 class="text-lg font-semibold text-center">ISQua 2024 — Istanbul, Turkey</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-center mt-2">
+            SHAIL Lab presented joint research on AI-assisted breast cancer diagnosis at the International Society for
+            Quality in Health Care Annual Conference, in collaboration with student researchers from NTPU.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border p-6">
+          <h3 class="text-lg font-semibold text-center">FAPA 2024 — Seoul, South Korea</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-center mt-2">
+            Collaborative presentation on digital transformation in cosmeceutical skincare at the Federation of
+            Asian Pharmaceutical Associations Congress, co-authored with SHAIL Lab researchers.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border p-6">
+          <h3 class="text-lg font-semibold text-center">ICORE 2025 — Kediri, Indonesia</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-center mt-2">
+            Dr. Manga delivered an invited guest lecture at the International Conference on Computing, Research,
+            and Engineering at the Institute of Technology Al-Mahrisiyyah Lirboyo.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border p-6">
+          <h3 class="text-lg font-semibold text-center">UHIMA &amp; TLCMA Symposium 2025 — Kaohsiung, Taiwan</h3>
+          <p class="text-gray-600 dark:text-gray-300 text-center mt-2">
+            Multiple SHAIL Lab papers presented on sarcopenia, wearable-assisted walking, and AI in emergency
+            care decision-making — demonstrating active local academic engagement.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-center text-sm text-gray-500 dark:text-gray-400">
+        For full conference and publication details, visit the
+        <a href="/founder/conference" class="text-accent hover:underline underline-offset-4">Conferences page</a>
+        and
+        <a href="/founder/publications" class="text-accent hover:underline underline-offset-4">Publications page</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

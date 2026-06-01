@@ -1,0 +1,25 @@
+---
+import Header from '~/components/widgets/Header.astro';
+import { headerData } from '~/navigation';
+
+const { metadata } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{metadata?.title ?? 'SHAIL Lab'}</title>
+    <meta name="description" content={metadata?.description ?? ''} />
+  </head>
+
+  <body class="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <!-- ✅ This is the critical line -->
+    <Header links={headerData.links} isSticky={true} showToggleTheme={true} />
+
+    <main class="pt-16">
+      <slot />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,281 @@
+---
+import Image from '~/components/common/Image.astro';
+import type { Hero as Props } from '~/types';
+
+/* -------------------------------------------
+   Types
+-------------------------------------------- */
+type Action = {
+  text?: string;
+  label?: string;
+  href?: string;
+  target?: string;
+  rel?: string;
+  variant?: 'primary' | 'secondary' | string;
+};
+
+type HeroImage = {
+  // You can pass: { src: importedImage, alt: '...' }
+  // importedImage can be Astro import object OR string
+  src: string | { src: string } | { default: { src: string } };
+  alt?: string;
+};
+
+/* -------------------------------------------
+   Props (Backward compatible + Slideshow)
+-------------------------------------------- */
+const props = Astro.props as Props & {
+  compact?: boolean;
+
+  // ✅ NEW: pass multiple images for rotation
+  images?: HeroImage[];
+
+  // ✅ NEW: slideshow timing (default 3000ms = 3s)
+  rotateMs?: number;
+
+  // ✅ NEW: fade timing (default 300ms)
+  fadeMs?: number;
+
+  // ✅ NEW: adjust hero image height (ONLY change this if needed)
+  imageHeight?: string; // e.g. 'clamp(260px, 32vw, 520px)'
+};
+
+// Slots (fallbacks)
+const slotTitle = await Astro.slots.render('title');
+const slotSubtitle = await Astro.slots.render('subtitle');
+const slotContent = await Astro.slots.render('content');
+const slotImage = await Astro.slots.render('image');
+const slotBg = await Astro.slots.render('bg');
+const slotActions = await Astro.slots.render('actions');
+
+// Prefer props when provided
+const title = props.title ?? slotTitle;
+const subtitle = props.subtitle ?? slotSubtitle;
+const tagline = props.tagline;
+const content = props.content ?? slotContent;
+
+// ✅ OLD: single hero image still works
+const image = (props.image as HeroImage | string | null | undefined) ?? slotImage;
+
+// ✅ NEW: slideshow images (if provided)
+const imagesProp = Array.isArray(props.images) ? props.images : [];
+const hasSlideshow = imagesProp.length > 1;
+
+// id, bg
+const id = props.id;
+const bg = (props.bg as string | undefined) ?? slotBg;
+
+// ✅ Actions: prefer props.actions array/object; otherwise allow slot HTML
+const actionsProp = (props.actions as Action[] | Action | undefined);
+const actionsArray: Action[] = Array.isArray(actionsProp) ? actionsProp : actionsProp ? [actionsProp] : [];
+const actionsHtml = typeof slotActions === 'string' && slotActions.trim().length > 0 ? slotActions : '';
+
+// Spacing presets
+const compact = Boolean(props.compact);
+const sectionPad = compact ? 'py-8 md:py-10' : 'py-12 md:py-20';
+const textPad = compact ? 'pb-6 md:pb-8' : 'pb-10 md:pb-16';
+
+// Button styles (matches your “Read Full Profile” look)
+const btnBase =
+  'inline-flex items-center justify-center rounded-full px-7 py-3 text-sm font-semibold ' +
+  'shadow-sm transition focus:outline-none focus:ring-2 focus:ring-primary/40';
+
+const btnPrimary = 'bg-primary text-white hover:opacity-90';
+const btnSecondary =
+  'border border-primary/40 text-primary hover:bg-primary/5 ' +
+  'dark:text-white/90 dark:border-white/15 dark:hover:bg-white/5';
+
+const safeLabel = (a: Action) => (a.text ?? a.label ?? 'Learn more').toString();
+const safeHref = (a: Action) => (a.href ?? '#').toString();
+const safeTarget = (a: Action) => (a.target ? a.target.toString() : undefined);
+
+const safeRel = (a: Action) => {
+  if (a.rel) return a.rel.toString();
+  return a.target === '_blank' ? 'noreferrer noopener' : undefined;
+};
+
+const getBtnClass = (a: Action) => {
+  const v = (a.variant ?? 'primary').toString();
+  return `${btnBase} ${v === 'secondary' ? btnSecondary : btnPrimary} w-full sm:w-auto`;
+};
+
+// ✅ Slideshow timings
+const rotateMs = typeof props.rotateMs === 'number' ? props.rotateMs : 3000; // ✅ 3 seconds
+const fadeMs = typeof props.fadeMs === 'number' ? props.fadeMs : 300;
+
+// ✅ Only change this if your images look too tall/too short
+const imageHeight = props.imageHeight ?? 'clamp(260px, 30vw, 520px)';
+
+// Unique id for slideshow image
+const heroImgId = `hero-rotator-${id ?? 'home'}`;
+
+// Normalize Astro import => URL
+const normalizeSrc = (s: string | { src: string } | { default: { src: string } } | null | undefined) => {
+  if (!s) return '';
+  if (typeof s === 'string') return s;
+  if (typeof s === 'object' && 'src' in s) return s.src;
+  if (typeof s === 'object' && s?.default?.src) return s.default.src;
+  return '';
+};
+
+const slides = imagesProp
+  .map((it) => ({
+    src: normalizeSrc(it?.src),
+    alt: (it?.alt ?? '').toString(),
+  }))
+  .filter((x) => !!x.src);
+
+const initialSlide = hasSlideshow ? slides[0] : null;
+
+// If no slideshow, keep original single-image behavior
+const hasSingleImage = Boolean(image && !hasSlideshow);
+---
+
+<section class="relative md:-mt-[76px] not-prose" {...(id ? { id } : {})}>
+  <!-- Background slot -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <slot name="bg">
+      {bg ? <Fragment set:html={bg} /> : null}
+    </slot>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+
+    <div class={sectionPad}>
+      <!-- Text area -->
+      <div class={`text-center ${textPad} max-w-5xl mx-auto`}>
+        {
+          tagline && (
+            <p
+              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase"
+              set:html={tagline}
+            />
+          )
+        }
+
+        {
+          title && (
+            <h1
+              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200"
+              set:html={title}
+            />
+          )
+        }
+
+        <div class="max-w-3xl mx-auto">
+          {
+            subtitle && (
+              <p class="text-xl text-muted mb-6 dark:text-slate-300" set:html={subtitle} />
+            )
+          }
+
+          {
+            (actionsArray.length > 0 || actionsHtml) && (
+              <div class="max-w-xs sm:max-w-md m-auto flex flex-col sm:flex-row sm:justify-center gap-4">
+                {actionsArray.length > 0 ? (
+                  actionsArray.map((action) => (
+                    <a
+                      href={safeHref(action)}
+                      target={safeTarget(action)}
+                      rel={safeRel(action)}
+                      class={getBtnClass(action)}
+                    >
+                      {safeLabel(action)}
+                    </a>
+                  ))
+                ) : (
+                  <Fragment set:html={actionsHtml} />
+                )}
+              </div>
+            )
+          }
+        </div>
+
+        {content && <Fragment set:html={content} />}
+      </div>
+
+      <!-- ===========================================
+           IMAGE AREA (FULL-ADJUST, NOT CARD)
+           - No rounded corners
+           - No small max-width (uses full width of container)
+           - object-contain keeps image correct
+           - height controlled with imageHeight
+         =========================================== -->
+      <div class="w-full">
+        {
+          hasSlideshow ? (
+            <div class="w-full overflow-hidden">
+              <img
+                id={heroImgId}
+                src={initialSlide?.src}
+                alt={initialSlide?.alt ?? ''}
+                loading="eager"
+                class="w-full object-contain"
+                style={`height:${imageHeight}; transition: opacity ${fadeMs}ms ease; opacity: 1;`}
+              />
+            </div>
+          ) : (
+            hasSingleImage && (
+              <div class="w-full overflow-hidden">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="w-full object-contain"
+                    widths={[400, 768, 1024, 2040]}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    loading="eager"
+                    width={1024}
+                    height={576}
+                    style={`height:${imageHeight};`}
+                    src={normalizeSrc(image?.src)}
+                    alt={image?.alt ?? ''}
+                  />
+                )}
+              </div>
+            )
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ✅ Slideshow script (only runs when images=[...] is provided) -->
+{
+  hasSlideshow && slides.length >= 2 && (
+    <script
+      is:inline
+      define:vars={{
+        heroImgId,
+        slides,
+        rotateMs,
+        fadeMs,
+      }}
+    >
+      (function () {
+        const img = document.getElementById(heroImgId);
+        if (!img || !Array.isArray(slides) || slides.length < 2) return;
+
+        let idx = 0;
+
+        const safe = (v) => (typeof v === 'string' ? v : '');
+
+        const show = (next) => {
+          img.style.opacity = '0';
+          window.setTimeout(() => {
+            img.src = safe(next.src);
+            img.alt = safe(next.alt);
+            img.style.opacity = '1';
+          }, Math.max(0, fadeMs));
+        };
+
+        window.setInterval(() => {
+          idx = (idx + 1) % slides.length;
+          show(slides[idx]);
+        }, Math.max(1000, rotateMs)); // guard: minimum 1s
+      })();
+    </script>
+  )
+}

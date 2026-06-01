@@ -1,0 +1,88 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+
+const items = [
+  {
+    title: 'Can I apply for a student placement or RA role?',
+    description:
+      'Opportunities are posted on our News & Events page. You may also send a CV and a one-page statement of interest to partnerships@shail-lab.org.',
+  },
+  {
+    title: 'Do you offer data or code access?',
+    description:
+      'Where licensing permits, we share materials via academic repositories. Refer to individual project pages for availability and terms.',
+  },
+  {
+    title: 'How do I invite SHAIL Lab to a seminar or conference?',
+    description:
+      'Please email media@shail-lab.org with event details, proposed topic, audience, and date/time (UTC+8).',
+  },
+  {
+    title: 'Do you consult for industry partners?',
+    description:
+      'Yes—subject to scope, conflict-of-interest checks, and institutional policies. Start with partnerships@shail-lab.org.',
+  },
+  {
+    title: 'How is my personal data handled?',
+    description:
+      'We process data in accordance with our Privacy Policy and applicable laws (e.g., GDPR, Taiwan PDPA). You may request access, correction, or deletion.',
+  },
+];
+---
+
+<WidgetWrapper containerClass="max-w-4xl mx-auto py-10 md:py-12">
+  <Headline
+    title="Frequently Asked Questions"
+    tagline="FAQ"
+    subtitle="Quick answers to common enquiries about placements, data access, speaking invitations, and partnerships."
+  />
+
+  <div class="mt-8 border-t border-gray-200 dark:border-gray-800">
+    {items.map((it, idx) => (
+      <details class="faq-item border-b border-gray-200 dark:border-gray-800 py-4">
+        <summary class="flex items-start gap-4 cursor-pointer list-none select-none">
+          <span class="mt-1 inline-flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-gray-900 dark:bg-slate-800 dark:text-white">
+            <span class="icon-plus text-lg leading-none">+</span>
+            <span class="icon-minus text-lg leading-none">−</span>
+          </span>
+
+          <div class="flex-1">
+            <h3 class="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+              {idx + 1}. {it.title}
+            </h3>
+            <div class="answer mt-2 text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300">
+              {it.description}
+            </div>
+          </div>
+        </summary>
+      </details>
+    ))}
+  </div>
+
+  <div class="mt-10 rounded-2xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-slate-900">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Accessibility &amp; Inclusivity</h3>
+    <p class="mt-3 text-sm sm:text-base leading-relaxed text-gray-700 dark:text-gray-300">
+      We aim to maintain an accessible web experience. If you encounter barriers (e.g., screen-reader issues, colour
+      contrast, keyboard navigation), contact
+      <a class="font-semibold text-accent underline underline-offset-4" href="mailto:support@shail-lab.org">
+        {' '}support@shail-lab.org
+      </a>
+      {' '}with the page URL and a brief description. We will address the issue promptly.
+    </p>
+  </div>
+</WidgetWrapper>
+
+<style>
+  /* remove default marker */
+  summary::-webkit-details-marker { display: none; }
+
+  /* hide answers until open */
+  .faq-item .answer { display: none; padding-right: 1rem; }
+  .faq-item[open] .answer { display: block; }
+
+  /* plus/minus swap */
+  .icon-minus { display: none; }
+  .faq-item[open] .icon-plus { display: none; }
+  .faq-item[open] .icon-minus { display: inline; }
+</style>

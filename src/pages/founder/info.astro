@@ -1,0 +1,370 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Steps from '~/components/widgets/Steps.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+
+import doctorImg from '~/assets/images/Dr. Yankuba B. Manga.jpg';
+import cvFile from '~/assets/CV_Resume/2026v1-Dr. Yang-PI-CV.pdf';
+
+const metadata = {
+  title: 'Founder’s Profile',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- =========================
+       Founder Hero
+       ========================= -->
+  <section class="bg-gray-50 dark:bg-gray-800 py-14 sm:py-16">
+    <Hero id="hero" compact tagline="Founder & Director, SHAIL Lab">
+      <Fragment slot="title">
+        <div class="space-y-2">
+          <p class="text-sm font-semibold tracking-wide text-accent uppercase">Founder’s Profile</p>
+
+          <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+            Dr. Yankuba B. Manga
+          </h1>
+
+          <p class="text-base sm:text-lg text-gray-600 dark:text-gray-300">
+            Assistant Professor · National Taipei University (NTPU)
+          </p>
+        </div>
+      </Fragment>
+
+      <Fragment slot="subtitle">
+        <p class="max-w-2xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          Dr. Manga leads <span class="font-semibold">SHAIL Lab</span>, advancing research at the intersection of
+          <span class="font-medium"> AI</span>, <span class="font-medium">smart healthcare</span>, and
+          <span class="font-medium">data-driven innovation</span>, with a focus on responsible and scalable solutions
+          for real-world health impact.
+        </p>
+      </Fragment>
+    </Hero>
+  </section>
+  <!-- =========================
+     About (Top-aligned + Professional)
+     ========================= -->
+  <section id="about" class="scroll-mt-24 bg-white dark:bg-slate-950">
+    <div class="mx-auto w-full max-w-5xl px-4 sm:px-6 pt-8 pb-12 sm:pt-10 sm:pb-14">
+      <!-- Header (top-aligned, tighter spacing) -->
+      <div class="flex flex-col items-center text-center">
+        <p class="text-sm font-semibold tracking-wide text-accent uppercase">Profile</p>
+
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">About me</h2>
+
+        <div class="mt-5">
+          <img src={doctorImg.src} alt="Dr. Yankuba B. Manga" loading="eager" class="profile-image" />
+        </div>
+      </div>
+      <!-- Text block (OUTSIDE card, clean and readable) -->
+      <div class="mt-8 sm:mt-10">
+        <div
+          class="mx-auto max-w-3xl
+      text-center
+      text-gray-700 dark:text-gray-300
+      leading-relaxed
+      space-y-6"
+        >
+          <p>
+            Dr. Manga is the founder of the Smart, Health, AI, and Leadership Lab (SHAIL Lab) and currently serves as an
+            Assistant Professor in the Master Program in Smart Healthcare Management and the Bachelor Program in Smart
+            Sustainable Development and Management at the International College of Sustainability Innovations, National
+            Taipei University.
+          </p>
+
+          <p>
+            He graduated from the College of Biomedical Engineering at Taipei Medical University and has since worked
+            extensively as a data analyst and researcher across multiple clinical and healthcare domains. His expertise
+            spans artificial intelligence (AI), healthcare management, public health, medical research, and data-driven
+            quality care management.
+          </p>
+
+          <p>
+            Dr. Manga’s research focuses on the application of machine learning, deep learning, and natural language
+            processing to healthcare challenges, particularly in medical devices, drug discovery, big data, and
+            telemedicine solutions. He has a strong background in wearable technology integration, leveraging smart
+            devices and the Internet of Medical Things to enhance patient care and expand access to healthcare services
+            remotely.
+          </p>
+
+          <p>
+            In addition to his technical expertise, Dr. Manga is deeply engaged in scientific research development,
+            leadership, and healthcare management. His work also addresses data security, healthcare regulatory
+            compliance, and Healthcare Failure Mode and Effects Analysis for accreditation and safety standards.
+          </p>
+
+          <p>
+            Through SHAIL Lab, he leads initiatives that bring together AI innovation, healthcare transformation, and
+            leadership training, ensuring that emerging technologies are translated into responsible, impactful, and
+            scalable solutions for global health and beyond.
+          </p>
+        </div>
+      </div>
+
+      <!-- =========================
+     Work Experience (Top-aligned + Tight)
+     ========================= -->
+      <section id="work-experience" class="scroll-mt-24 bg-gray-50 dark:bg-gray-800">
+        <Steps
+          title="Work Experience"
+          subtitle="A concise timeline of academic leadership, research, and applied data-science roles."
+          items={[
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Assistant Professor</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">National Taipei University · New Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2023 – Present
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Develops AI-enabled intelligent information systems for human-centred, real-world decision support.</li>
+  <li>Mentors students on data management in smart healthcare, integrating computational biology and applied AI.</li>
+</ul>`,
+              icon: 'tabler:briefcase',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Freelance Data Scientist · Computational Engineer</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">Freelance</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2022 – 2023
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Builds predictive models using machine-learning algorithms and domain-driven feature engineering.</li>
+  <li>Optimises accuracy and efficiency with meta-heuristics (e.g., Genetic Algorithms).</li>
+  <li>Validates and benchmarks AI/data-mining workflows for practical deployment.</li>
+</ul>`,
+              icon: 'tabler:briefcase',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Postdoctoral Research Scientist</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">Taipei Medical University · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2019 – 2021
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Contributes to drug development and delivery research with translational focus.</li>
+  <li>Supports cross-functional collaboration and project execution across research stakeholders.</li>
+</ul>`,
+              icon: 'tabler:briefcase',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Graduate / Postgraduate Research Scientist</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">Taipei Medical University · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2015 – 2018
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Conducts biosensor development and cancer-screening medical device research (Nanotechnology Research Center).</li>
+  <li>Builds laboratory protocols, documentation practices, and reproducible experimental workflows.</li>
+</ul>`,
+              icon: 'tabler:briefcase',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Assistant Supervisor</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">National Taipei University of Technology · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2008 – 2010
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Supports teaching delivery, student assessment, and performance tracking.</li>
+  <li>Assists in designing learning activities and adapting instructional materials.</li>
+  <li>Provides guidance and motivation to enhance student engagement.</li>
+</ul>`,
+              icon: 'tabler:briefcase',
+            },
+          ]}
+          classes={{
+            /* ✅ This is the REAL fix: override WidgetWrapper padding */
+            container: 'py-8 md:py-10 lg:py-12',
+
+            /* ✅ Center heading (works with your updated Steps.astro) */
+            headline: {
+              container: 'text-center',
+              title: 'text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white',
+              subtitle: 'mt-3 max-w-2xl mx-auto text-gray-600 dark:text-gray-300',
+            },
+
+            /* Timeline spacing + nicer panels */
+            items: {
+              container: 'mt-8',
+              panel:
+                'rounded-2xl bg-white/90 dark:bg-slate-900/40 border border-gray-200/70 dark:border-white/10 shadow-sm px-6 py-6',
+              title: 'text-lg font-semibold',
+              description: 'text-gray-700 dark:text-gray-300',
+            },
+          }}
+        />
+      </section>
+
+      <!-- =========================
+     Education (Top-aligned + Tight)
+     ========================= -->
+      <section id="education" class="scroll-mt-24 bg-white dark:bg-slate-950">
+        <Steps
+          title="Education"
+          subtitle="Academic training and specialised preparation in biomedical engineering and electronic engineering."
+          items={[
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Doctor of Philosophy (Ph.D.)</span>
+<span class="block text-sm text-gray-700 dark:text-gray-300">Biomedical Materials &amp; Tissue Engineering</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">Taipei Medical University · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2013 – 2019
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Doctoral research in biomedical materials and tissue engineering with translational healthcare relevance.</li>
+</ul>`,
+              icon: 'tabler:school',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Master of Science (MSc)</span>
+<span class="block text-sm text-gray-700 dark:text-gray-300">Biomedical Materials &amp; Tissue Engineering</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">Taipei Medical University · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2010 – 2013
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Graduate-level training in biomaterials and tissue engineering foundations and research methods.</li>
+</ul>`,
+              icon: 'tabler:school',
+            },
+            {
+              title: `
+<span class="block text-lg font-semibold text-gray-900 dark:text-white">Bachelor of Science (BSc)</span>
+<span class="block text-sm text-gray-700 dark:text-gray-300">Electronic Engineering</span>
+<span class="block text-sm text-gray-600 dark:text-gray-300">National Taipei University of Technology · Taipei, Taiwan</span>
+<span class="mt-2 inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-700/40 dark:text-slate-200">
+  2007 – 2010
+</span>`,
+              description: `
+<ul class="mt-3 list-disc pl-5 space-y-2 text-sm leading-relaxed text-gray-700 dark:text-gray-300">
+  <li>Core training in electronics with strong foundations for biomedical instrumentation and smart systems.</li>
+</ul>`,
+              icon: 'tabler:school',
+            },
+          ]}
+          classes={{
+            /* ✅ REAL fix: override WidgetWrapper padding (removes huge top whitespace) */
+            container: 'py-8 md:py-10 lg:py-12 max-w-4xl mx-auto',
+
+            /* ✅ Center heading + subtitle */
+            headline: {
+              container: 'text-center',
+              title: 'text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white',
+              subtitle: 'mt-3 max-w-2xl mx-auto text-gray-600 dark:text-gray-300',
+            },
+
+            /* ✅ Timeline styling (professional cards) */
+            items: {
+              container: 'mt-8',
+              panel:
+                'rounded-2xl bg-gray-50/90 dark:bg-slate-900/40 border border-gray-200/70 dark:border-white/10 shadow-sm px-6 py-6',
+              title: 'text-lg font-semibold',
+              description: 'text-gray-700 dark:text-gray-300',
+            },
+          }}
+        />
+      </section>
+    <section id="contact" class="scroll-mt-24 bg-gray-50 dark:bg-gray-800">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6 pt-10 pb-8 sm:pt-12 sm:pb-10">
+    <div class="text-center mb-6">
+      <p class="text-sm font-semibold tracking-wide text-accent uppercase">Founder’s Contact</p>
+      <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Contact & Professional Links
+      </h2>
+      <p class="mt-3 max-w-2xl mx-auto text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+        Key contact channels for academic enquiries, collaborations, and professional profiles.
+      </p>
+    </div>
+
+    <Features3
+      columns={3}
+      classes={{
+        container: 'max-w-5xl mx-auto',
+        items: 'gap-6',
+        // ✅ remove hover translate/shadow so the card does NOT feel like one big link
+        item:
+          'flex flex-col items-center text-center gap-2 rounded-2xl border border-gray-200/70 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-slate-900',
+        icon: 'mb-2 w-12 h-12 rounded-2xl bg-slate-100 text-accent p-3 dark:bg-slate-800',
+        title: 'font-semibold text-lg text-gray-900 dark:text-white',
+        description: 'text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed',
+        // ✅ only CTA text shows hover
+        action:
+          'mt-2 inline-flex items-center gap-2 text-sm font-semibold text-accent hover:underline underline-offset-4',
+      }}
+      items={[
+        {
+          title: 'Office Phone',
+          description: '+886 2 8674 1111 (Ext. 68908)',
+          icon: 'tabler:phone',
+          callToAction: { text: 'Call now', href: 'tel:+886286741111;ext=68908' },
+        },
+        {
+          title: 'Email',
+          description: 'bydrmanga@gm.ntpu.edu.tw',
+          icon: 'tabler:mail',
+          callToAction: { text: 'Send Email', href: 'mailto:bydrmanga@gm.ntpu.edu.tw' },
+        },
+        {
+          title: 'Office Location',
+          description: '7F, Room 705, ELYTONE Building, National Taipei University',
+          icon: 'tabler:map-pin',
+          callToAction: {
+            text: 'Open in Maps',
+            target: '_blank',
+            href:
+              'https://www.google.com/maps/search/?api=1&query=' +
+              encodeURIComponent('7F, Room 705, ELYTONE Building, National Taipei University'),
+          },
+        },
+        {
+          title: 'LinkedIn',
+          description: 'Professional profile and academic updates',
+          icon: 'tabler:brand-linkedin',
+          callToAction: { target: '_blank', text: 'View LinkedIn', href: 'https://www.linkedin.com/in/dryankuba/' },
+        },
+        {
+          title: 'ORCID iD',
+          description: '0000-0002-8750-3721',
+          icon: 'tabler:id',
+          callToAction: { target: '_blank', text: 'View ORCID', href: 'https://orcid.org/0000-0002-8750-3721' },
+        },
+      ]}
+    />
+  </div>
+</section>
+<!-- =========================
+     Floating CV Download Button
+     ========================= -->
+<a
+  href={cvFile}
+  download
+  target="_blank"
+  class="fixed right-8 top-[90%] z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 px-5 py-3 text-white shadow-lg hover:scale-105 hover:shadow-xl transition-all duration-300"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+      d="M12 3v12m0 0l4-4m-4 4l-4-4m-7 7h18" />
+  </svg>
+
+  <span class="text-sm font-semibold">Download CV</span>
+</a>
+  </Layout
+>

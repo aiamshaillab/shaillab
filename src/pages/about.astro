@@ -1,0 +1,256 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Stats from '~/components/widgets/Stats.astro';
+
+import vision from '~/assets/images/vision.jpg';
+import mission from '~/assets/images/MSN.png';
+
+const metadata = {
+  title: 'About Us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="About us"
+    image={{
+      src: vision,
+      alt: 'SHAIL Lab — vision and innovation',
+    }}
+  >
+    <Fragment slot="title">
+      <div class="text-center">
+        <span class="block text-4xl sm:text-5xl font-bold tracking-tight"> SHAIL Lab </span>
+      </div>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <div class="mx-auto max-w-3xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300 space-y-6">
+        <p>
+          The Smart, Health, AI, and Leadership Lab (SHAIL Lab) is dedicated to advancing innovation at the intersection
+          of technology, health, and leadership. Founded on the principle that artificial intelligence and smart systems
+          can drive transformative change, SHAIL Lab serves as a collaborative hub where ideas are tested, knowledge is
+          shared, and solutions are built for real-world impact.
+        </p>
+
+        <p>
+          Our vision is to become a global leader in smart technologies, health innovation, and responsible AI adoption.
+          By empowering students, researchers, and professionals, we seek to bridge technical expertise with leadership
+          skills, equipping the next generation to shape the future of healthcare, finance, and industry.
+        </p>
+
+        <p>
+          At SHAIL Lab, we foster international partnerships, nurture entrepreneurship, and promote sustainability.
+          Through interdisciplinary research and practical applications, we transform AI and smart technologies into
+          scalable innovations that improve lives, strengthen communities, and prepare tomorrow’s global leaders.
+        </p>
+      </div>
+    </Fragment>
+  </Hero>
+
+  <!-- =========================
+       QUOTES (Reduced padding)
+       ========================= -->
+  <section class="py-12 md:py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="mx-auto max-w-5xl px-4">
+      <p class="text-center text-sm font-semibold tracking-wide text-accent">Our Message</p>
+      <h2 class="mt-2 text-center text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+        What SHAIL Lab stands for
+      </h2>
+
+      <div class="mt-8 space-y-6 text-center text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        <p>
+          “Smart systems. Health innovation. AI leadership. SHAIL Lab transforms ideas into scalable solutions that
+          drive global change.”
+        </p>
+        <p>
+          “Innovating at the crossroads of health, AI, and leadership — SHAIL Lab empowers global innovators to shape a
+          smarter, healthier future.”
+        </p>
+        <p>
+          “SHAIL Lab is a global hub for smart technologies, health innovation, and leadership — advancing responsible
+          AI solutions for real-world impact.”
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       STATS (Reduced padding)
+       ========================= -->
+  <section class="py-12 md:py-16">
+    <Stats
+      title="SHAIL Lab At A Glance"
+      stats={[
+        { title: 'GRADUATE STUDENTS', amount: '13' },
+        { title: 'SUPERVISED STUDENTS', amount: '9' },
+        { title: 'PEER-REVIEWED PUBLICATIONS', amount: '20+' },
+        { title: 'RESEARCH PROJECTS', amount: '5+' },
+      ]}
+    />
+    <!-- Note: 20+ publications refers to the founder's total count on ORCID/Scopus.
+         Selected publications are listed at /founder/publications -->
+    <p class="mt-4 text-center text-sm text-gray-500 dark:text-gray-400">
+      Publication count based on
+      <a href="https://orcid.org/0000-0002-8750-3721" target="_blank" rel="noopener noreferrer"
+         class="text-accent hover:underline underline-offset-4">ORCID</a>
+      &amp;
+      <a href="https://www.scopus.com/authid/detail.uri?authorId=57195972825" target="_blank" rel="noopener noreferrer"
+         class="text-accent hover:underline underline-offset-4">Scopus</a>
+      profiles. ·
+      <a href="/founder/publications" class="text-accent hover:underline underline-offset-4">View selected publications →</a>
+    </p>
+  </section>
+
+  <!-- =========================
+     VISION (Refined + Professional)
+     ========================= -->
+  <section class="relative py-14 md:py-18 bg-gray-50 dark:bg-gray-900">
+    <!-- Soft background accent -->
+    <div class="pointer-events-none absolute inset-0">
+      <div
+        class="absolute -top-24 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl dark:bg-accent/15"
+        aria-hidden="true"
+      >
+      </div>
+    </div>
+
+    <HeroText title="Vision" subtitle="">
+      <Fragment slot="bg">
+        <!-- Keep background clean; HeroText already handles layout -->
+        <div class="absolute inset-0 bg-gray-50 dark:bg-gray-900"></div>
+      </Fragment>
+
+      <Fragment slot="content">
+        <div class="mx-auto max-w-5xl px-4 text-center">
+          <!-- Eyebrow + title -->
+          <p class="text-xs font-semibold tracking-widest text-accent uppercase">Strategic Direction</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+            A clear vision for responsible innovation
+          </h2>
+
+          <p class="mt-4 mx-auto max-w-3xl text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            SHAIL Lab focuses on building smart, ethical, and scalable AI solutions that create measurable impact in
+            healthcare and beyond.
+          </p>
+
+          <!-- Accent divider -->
+          <div class="mt-6 flex justify-center">
+            <div class="h-1 w-16 rounded-full bg-accent"></div>
+          </div>
+
+          <!-- Vision statement card -->
+          <div
+            class="mt-8 mx-auto max-w-4xl rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 text-left shadow-sm
+                 dark:border-gray-800 dark:bg-slate-950"
+          >
+            <p class="text-sm font-semibold text-gray-900 dark:text-white">Vision statement</p>
+
+            <p class="mt-3 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+              To be a global hub for smart technologies, health innovation, artificial intelligence, and leadership
+              development—empowering future leaders to transform healthcare, finance, and industry through responsible
+              and impactful AI-driven solutions.
+            </p>
+
+            <!-- Optional small highlights -->
+            <div class="mt-6 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-xl bg-gray-50 p-4 dark:bg-slate-900">
+                <p class="text-sm font-semibold text-gray-900 dark:text-white">Responsible AI</p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Ethics, safety, and transparency.</p>
+              </div>
+
+              <div class="rounded-xl bg-gray-50 p-4 dark:bg-slate-900">
+                <p class="text-sm font-semibold text-gray-900 dark:text-white">Real-world Impact</p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Solutions that scale and matter.</p>
+              </div>
+
+              <div class="rounded-xl bg-gray-50 p-4 dark:bg-slate-900">
+                <p class="text-sm font-semibold text-gray-900 dark:text-white">Leadership</p>
+                <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Developing future innovators.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Fragment>
+    </HeroText>
+  </section>
+  <!-- =========================
+     MISSION SECTION
+     ========================= -->
+<section class="relative py-10">
+
+  <!-- Background Accent -->
+  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+    <div class="absolute -top-24 right-10 h-64 w-64 rounded-full bg-accent/10 blur-3xl"></div>
+    <div class="absolute -bottom-24 left-10 h-64 w-64 rounded-full bg-accent/10 blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+
+    <!-- Mission Title -->
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+        Mission
+      </h2>
+      <p class="mt-3 text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+        Our mission is organized into four practical pillars that guide research, training, and global engagement.
+      </p>
+    </div>
+
+    <!-- Mission Cover Image -->
+    <div class="mb-6 overflow-hidden rounded-2xl shadow-xl">
+      <img
+        src={mission.src}
+        alt="Smart Healthcare AI Mission"
+        class="w-full h-[460px] object-cover object-[center_20%]"
+      />
+    </div>
+
+    <!-- Mission Cards -->
+    <Features3
+      id="MSN"
+      columns={2}
+      items={[
+        {
+          title: 'Smart Integration',
+          description:
+            'To integrate smart systems, health technologies, artificial intelligence, and management strategies to tackle complex challenges across healthcare, finance, and industrial ecosystems.',
+          icon: 'tabler:square-number-1',
+        },
+        {
+          title: 'Talent Development',
+          description:
+            'To cultivate students, researchers, and professionals as innovators and leaders who combine technical expertise with strategic decision-making.',
+          icon: 'tabler:square-number-2',
+        },
+        {
+          title: 'Global Collaboration',
+          description:
+            'To foster international collaborations that advance equity, sustainability, and the responsible adoption of AI in both public and private sectors.',
+          icon: 'tabler:square-number-3',
+        },
+        {
+          title: 'AI Innovation',
+          description:
+            'To accelerate innovation and entrepreneurship by transforming AI and smart technologies into scalable, real-world solutions with global impact.',
+          icon: 'tabler:square-number-4',
+        },
+      ]}
+    />
+
+  </div>
+</section>
+  <!-- SEO meta keywords (hidden from visitors, for search engines only) -->
+  <!--
+    Primary: SHAIL Lab, Smart Health AI Lab, Artificial Intelligence in Healthcare, Smart Systems and Leadership
+    Secondary: AI in Healthcare Innovation, Global Health Technology Research, Responsible AI Adoption,
+               AI and Leadership Development, Smart Healthcare Management
+  -->
+</Layout>

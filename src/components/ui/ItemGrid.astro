@@ -1,0 +1,107 @@
+---
+import type { ItemGrid as Props } from '~/types';
+import { Icon } from 'astro-icon/components';
+import { twMerge } from 'tailwind-merge';
+
+const { items = [], columns, defaultIcon = '', classes = {} } = Astro.props;
+
+const {
+  container: containerClass = '',
+  panel: panelClass = '',
+  title: titleClass = '',
+  description: descriptionClass = '',
+  icon: defaultIconClass = 'text-primary',
+} = classes;
+
+const isExternal = (href?: string) => !!href && /^https?:\/\//i.test(href);
+
+// ✅ Decode common escaped entities (in case description got escaped upstream)
+const decodeHtml = (s = '') =>
+  s
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll('&amp;', '&');
+---
+
+{
+  items && items.length > 0 && (
+    <div
+      class={twMerge(
+        `grid gap-8 gap-x-12 sm:gap-y-8 ${
+          columns === 4
+            ? 'lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2'
+            : columns === 3
+              ? 'lg:grid-cols-3 sm:grid-cols-2'
+              : columns === 2
+                ? 'sm:grid-cols-2'
+                : ''
+        }`,
+        containerClass
+      )}
+    >
+      {items.map(({ title, description, icon, link, hoverTextOnly, classes: itemClasses = {} }) => {
+        const external = isExternal(link);
+        const Wrapper = link ? 'a' : 'div';
+
+        const descHtml = typeof description === 'string' ? decodeHtml(description.trim()) : '';
+
+        return (
+          <Wrapper
+            href={link}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noopener noreferrer' : undefined}
+            class={twMerge(
+              'relative flex flex-col rounded-lg transition-all duration-200',
+              link ? 'cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary/40' : '',
+              !hoverTextOnly && link ? 'hover:-translate-y-1 hover:shadow-lg' : '',
+              panelClass,
+              itemClasses?.panel,
+              hoverTextOnly ? 'group' : ''
+            )}
+          >
+            {(icon || defaultIcon) && (
+              <Icon
+                name={icon || defaultIcon}
+                class={twMerge(
+                  'mb-3 w-10 h-10',
+                  defaultIconClass,
+                  itemClasses?.icon,
+                  hoverTextOnly ? 'transition group-hover:text-accent' : ''
+                )}
+              />
+            )}
+
+            {title && (
+              <h3
+                class={twMerge(
+                  'text-xl font-bold',
+                  titleClass,
+                  itemClasses?.title,
+                  hoverTextOnly ? 'transition group-hover:text-accent' : ''
+                )}
+              >
+                {title}
+              </h3>
+            )}
+
+            {description && (
+              // ✅ Use Fragment so <ul> renders correctly (and not inside a <p>)
+              <div
+                class={twMerge(
+                  'text-muted mt-2',
+                  descriptionClass,
+                  itemClasses?.description,
+                  hoverTextOnly ? 'transition group-hover:text-accent/90' : ''
+                )}
+              >
+                <Fragment set:html={descHtml} />
+              </div>
+            )}
+          </Wrapper>
+        );
+      })}
+    </div>
+  )
+}

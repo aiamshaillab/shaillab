@@ -1,0 +1,134 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import path from 'node:path';
+import fs from 'node:fs/promises';
+
+import { findImage } from '~/utils/images';
+import {
+  getImagesOptimized,
+  astroAssetsOptimizer,
+  unpicOptimizer,
+  isUnpicCompatible,
+  type ImageProps,
+} from '~/utils/images-optimization';
+
+// image-size (works in Node; good for /public files)
+import imageSize from 'image-size';
+
+type ImageType = {
+  src: string;
+  attributes: HTMLAttributes<'img'>;
+};
+
+type Props = ImageProps & {
+  width?: number | string;
+  height?: number | string;
+  class?: string;
+  style?: string;
+};
+
+const props = Astro.props as Props;
+
+if (props.alt == null) {
+  throw new Error('Image alt is required');
+}
+
+const widthNum = typeof props.width === 'string' ? parseInt(props.width, 10) : props.width;
+const heightNum = typeof props.height === 'string' ? parseInt(props.height, 10) : props.height;
+
+const loading = props.loading ?? 'lazy';
+const decoding = props.decoding ?? 'async';
+
+const isPublicPath = typeof props.src === 'string' && props.src.startsWith('/');
+
+// -----------
+// Auto-size cache (avoids repeated disk reads)
+// -----------
+const g = globalThis as unknown as { __PUBLIC_IMG_SIZE_CACHE__?: Map<string, { w: number; h: number }> };
+if (!g.__PUBLIC_IMG_SIZE_CACHE__) g.__PUBLIC_IMG_SIZE_CACHE__ = new Map();
+const sizeCache = g.__PUBLIC_IMG_SIZE_CACHE__;
+
+let publicW = widthNum;
+let publicH = heightNum;
+
+// -----------
+// If it's a /public image and width/height missing → read real dimensions from disk
+// -----------
+if (isPublicPath && (publicW == null || publicH == null)) {
+  const rel = (props.src ?? '').replace(/^\//, '');
+  const abs = path.join(process.cwd(), 'public', rel);
+
+  const cached = sizeCache.get(abs);
+  if (cached) {
+    publicW = publicW ?? cached.w;
+    publicH = publicH ?? cached.h;
+  } else {
+    try {
+      // Ensure the file exists
+      await fs.access(abs);
+
+      const dims = imageSize(abs);
+      const w = dims.width ?? 0;
+      const h = dims.height ?? 0;
+
+      if (w > 0 && h > 0) {
+        sizeCache.set(abs, { w, h });
+        publicW = publicW ?? w;
+        publicH = publicH ?? h;
+      }
+    } catch {
+      // If anything fails, fall back to safe defaults (still prevents crash)
+      publicW = publicW ?? 900;
+      publicH = publicH ?? Math.round((publicW * 9) / 16);
+    }
+  }
+}
+
+// -----------
+// Optimized branch (src/assets or remote) - your existing behavior
+// -----------
+let image: ImageType | undefined;
+
+if (!isPublicPath) {
+  const resolved = await findImage(props.src);
+
+  if (
+    typeof resolved === 'string' &&
+    (resolved.startsWith('http://') || resolved.startsWith('https://')) &&
+    isUnpicCompatible(resolved)
+  ) {
+    image = await getImagesOptimized(
+      resolved,
+      { ...props, width: widthNum, height: heightNum, loading, decoding },
+      unpicOptimizer
+    );
+  } else if (resolved) {
+    image = await getImagesOptimized(
+      resolved,
+      { ...props, width: widthNum, height: heightNum, loading, decoding },
+      astroAssetsOptimizer
+    );
+  }
+}
+---
+
+{/* ✅ PUBLIC images: /public/... (blog + home + everything) */}
+{isPublicPath && (
+  <img
+    src={props.src}
+    alt={props.alt}
+    width={publicW}
+    height={publicH}
+    class={props.class}
+    style={props.style}
+    loading={loading}
+    decoding={decoding}
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+)}
+
+{/* ✅ Optimized images: src/assets or remote URLs */}
+{!isPublicPath && image && (
+  <img src={image.src} crossorigin="anonymous" referrerpolicy="no-referrer" {...image.attributes} />
+)}
