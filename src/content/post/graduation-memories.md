@@ -1,9 +1,9 @@
----
+﻿---
 publishDate: 2026-02-10T00:00:00Z
 author: "Smart Healthcare Management"
 title: "Graduation Memories"
 excerpt: "Highlights from recent graduation and gown photo moments within the Smart Healthcare Management community."
-image: "/blog_images/6Graduationceremony.jpg"
+image: "/blog_images/6graduationceremony.jpg"
 category: "News"
 tags:
   - "graduation"
@@ -18,7 +18,7 @@ Graduation marks an important milestone in the academic journey of students with
 
 The SHM community takes pride in celebrating the achievements of its graduates, who are now prepared to contribute to the fields of smart healthcare, data-driven decision making, and interdisciplinary innovation.
 
-![Graduation Ceremony](/blog_images/6Graduationceremony.jpg)
+![Graduation Ceremony](/blog_images/6graduationceremony.jpg)
 
 ## Academic Journey and Community
 
@@ -30,11 +30,11 @@ Graduation serves as a moment of reflection on these shared experiences and the 
 
 Following the ceremony, students participated in gown photo sessions to commemorate their academic accomplishments. These moments capture both individual success and the collective spirit of the SHM program.
 
-![Gown Photos 1](/blog_images/6Gown_photos.jpg)
+![Gown Photos 1](/blog_images/6gown_photos.jpg)
 
-![Gown Photos 2](/blog_images/7Gownphotos.jpg)
+![Gown Photos 2](/blog_images/7gownphotos.jpg)
 
-![Gown Photos 3](/blog_images/8Gownphotos.jpg)
+![Gown Photos 3](/blog_images/8gownphotos.jpg)
 
 ## Looking Ahead
 

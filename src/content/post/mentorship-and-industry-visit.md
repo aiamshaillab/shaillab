@@ -1,9 +1,9 @@
----
+﻿---
 publishDate: 2026-02-15T00:00:00Z
 author: "Smart Healthcare Management"
 title: "Mentorship, Industry Visits, and Experiential Learning"
 excerpt: "A general overview of mentorship activities, academic guidance, and industry exposure experiences that support professional and personal development in Smart Healthcare Management."
-image: "/blog_images/4VisitITRI.jpg"
+image: "/blog_images/4visititri.jpg"
 category: "Academic Activities"
 tags:
   - mentorship
@@ -32,7 +32,7 @@ Mentorship sessions provide students with valuable opportunities to interact clo
 
 Through informal discussions, group mentoring, and collaborative activities, students are encouraged to ask questions, reflect on their learning journey, and gain confidence in their academic decisions.
 
-![Mentorship Session](/blog_images/StudentsMentor.jpg)
+![Mentorship Session](/blog_images/studentsmentor.jpg)
 
 
 These mentorship experiences foster a supportive learning environment where students feel guided, motivated, and connected to the academic community.
@@ -42,7 +42,7 @@ These mentorship experiences foster a supportive learning environment where stud
 ## Learning Beyond the Classroom: Industry and Field Visits
 
 In addition to academic mentoring, industry and institutional visits are an essential part of experiential learning. Such visits allow students to observe how theoretical concepts are applied in real-world settings, particularly in areas related to healthcare technology, biomedical innovation, and digital transformation.
-![Institutional Tour Experience](/blog_images/Fieldtrips.jpg)
+![Institutional Tour Experience](/blog_images/fieldtrips.jpg)
 During these visits, students typically gain exposure to:
 
 - Research and development environments  
@@ -50,20 +50,20 @@ During these visits, students typically gain exposure to:
 - Innovation management practices  
 - Professional communication and teamwork  
 
-![Industry Visit Group Photo](/blog_images/Visit.jpg)
+![Industry Visit Group Photo](/blog_images/visit.jpg)
 
 
 
 These experiences help bridge the gap between academic knowledge and practical application, enabling students to better understand industry expectations and emerging trends.
 
-![Industry Learning Environment](/blog_images/4WistronVisit.jpg)
+![Industry Learning Environment](/blog_images/4wistronvisit.jpg)
 ---
 
 ## Professional Development and Inspiration
 
 Industry talks, presentations, and interactive sessions with professionals further enrich students’ learning experiences. Listening to experts share their professional journeys, challenges, and achievements offers inspiration and practical advice for future career planning.
 
-![Professional Talk Session](/blog_images/Visit.jpg)
+![Professional Talk Session](/blog_images/visit.jpg)
 
 
 Such engagements emphasize the importance of lifelong learning, adaptability, and interdisciplinary collaboration—key competencies in modern healthcare management.

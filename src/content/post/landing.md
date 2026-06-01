@@ -1,9 +1,9 @@
----
+﻿---
 publishDate: 2024-11-15T00:00:00Z
 author: "Smart Healthcare Management Program"
 title: "Industry Engagement and Recognition at Wistron Medical Technology"
 excerpt: "An insightful academic–industry engagement highlighting robotics training, healthcare innovation, mentorship, and professional recognition at Wistron Medical Technology."
-image: "/blog_images/9WistronVisit.jpg"
+image: "/blog_images/9wistronvisit.jpg"
 category: "Industry Visit"
 tags:
   - smart healthcare
@@ -19,7 +19,7 @@ As part of our continuous efforts to bridge **academic learning with real-world 
 
 The experience emphasized the importance of **industry–academia collaboration** in preparing students for future challenges in digital health, medical robotics, and healthcare technology management.
 
-![Wistron Medical Technology Visit](/blog_images/9WistronVisit.jpg)
+![Wistron Medical Technology Visit](/blog_images/9wistronvisit.jpg)
 
 ---
 
@@ -34,7 +34,7 @@ During the visit, participants were introduced to Wistron’s **robotic training
 
 This session allowed students to connect classroom theories with **practical healthcare engineering applications**, strengthening their understanding of how smart technologies enhance patient care and clinical efficiency.
 
-![Robotic Training Center Overview](/blog_images/8WistronVisit.jpg)
+![Robotic Training Center Overview](/blog_images/8wistronvisit.jpg)
 
 ---
 
@@ -49,7 +49,7 @@ A key highlight of the visit was the **interactive discussion** between students
 
 Such exchanges foster critical thinking and inspire students to pursue impactful careers at the intersection of **technology, management, and healthcare**.
 
-![Discussion and Engagement Session](/blog_images/7WistronVisit.jpg)
+![Discussion and Engagement Session](/blog_images/7wistronvisit.jpg)
 
 ---
 
@@ -74,7 +74,7 @@ This visit to Wistron Medical Technology represents more than a single event—i
 
 We look forward to continued collaboration that empowers students and contributes to the evolution of **intelligent, patient-centered healthcare systems**.
 
-![Group Photo at Wistron](/blog_images/9WistronVisit.jpg)
+![Group Photo at Wistron](/blog_images/9wistronvisit.jpg)
 
 ---
 
